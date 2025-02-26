@@ -1,5 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="App 2" type="KtorApplicationConfigurationType" factoryName="Ktor">
+    <option name="ALTERNATIVE_JRE_PATH" value="temurin-21" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <envs>
       <env name="DB_PASS" value="password" />
       <env name="DB_URL" value="jdbc:postgresql://localhost:5433/postgres" />
@@ -8,17 +10,18 @@
       <env name="NODE_DONOR" value="http://localhost:8081" />
       <env name="NODE_MODE" value="REPLICA" />
       <env name="PORT" value="8082" />
+      <env name="NETWORK_ID" value="local" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="org.avisen.app.AppKt" />
-    <module name="gray-matter.app.main" />
+    <module name="avisen-kt.app.main" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="org.avisen.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
-    <option name="alternativeJrePath" />
-    <option name="alternativeJrePathEnabled" value="false" />
+    <option name="alternativeJrePath" value="temurin-21" />
+    <option name="alternativeJrePathEnabled" value="true" />
     <option name="includeProvidedScope" value="false" />
     <option name="mainClass" value="org.avisen.app.AppKt" />
     <option name="passParentEnvs" value="true" />

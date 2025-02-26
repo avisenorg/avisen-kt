@@ -1,11 +1,9 @@
 package org.avisen.network
 
-import org.avisen.blockchain.Block
-import org.avisen.storage.Storage
-import org.avisen.storage.StoreNode
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -13,9 +11,11 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
+import io.ktor.util.appendIfNameAbsent
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import org.avisen.blockchain.Block
 
 @Serializable
 data class Node(
@@ -34,6 +34,7 @@ enum class NodeType {
  */
 @Serializable
 data class Info(
+    val networkId: String,
     val node: NodeInfo,
 )
 
@@ -53,10 +54,10 @@ data class NodeInfo(
 
 @Serializable
 data class Network(
-    @Transient private val client: NetworkClient = NetworkWebClient(),
-    private val storage: Storage,
+    @Transient private val client: NetworkClient = NetworkWebClient(""),
+    private val peers: MutableList<Node> = mutableListOf(),
 ) {
-    fun peers() = storage.peers().map { it.toNode() }
+    fun peers() = peers.toList()
 
     /**
      * Adds a node to the network.
@@ -65,10 +66,10 @@ data class Network(
      * A duplicate node has the same address.
      */
     private fun addPeer(participant: Node): Boolean {
-        val duplicateNode = storage.getNetworkPeer(participant.address)
+        val duplicateNode = peers.firstOrNull { it.address == participant.address }
         if (duplicateNode != null) return false
 
-        storage.addNetworkPeer(participant.toStore())
+        peers.add(participant)
         return true
     }
 
@@ -85,7 +86,7 @@ data class Network(
 
         // Broadcast the addition of the node to the network
         if (broadcast == true && added) {
-            storage.peers()
+            peers
                 .filter {
                     it.address != node.address
                 }
@@ -99,21 +100,21 @@ data class Network(
     }
 
     suspend fun broadcastBlock(newBlock: Block) {
-        storage.peers().forEach {
+        peers.forEach {
             client.broadcastBlock(it.address, newBlock)
         }
     }
 
     suspend fun downloadPeers(donorNode: String) {
         client.downloadPeers(donorNode).forEach {
-            storage.addNetworkPeer(StoreNode(it.address, it.type.name))
+            peers.add(Node(it.address, it.type))
         }
     }
 
-    suspend fun downloadPeerInfo(peer: String) {
+    suspend fun downloadPeerInfo(peer: String): Info {
         val peerInfo = client.downloadPeerInfo(peer)
 
-        storage.addNetworkPeer(peerInfo.node.toNode().toStore())
+        return peerInfo
     }
 
     suspend fun downloadBlocks(peer: String, page: Int, fromHeight: UInt?) = client.downloadBlocks(peer, page, fromHeight)
@@ -135,23 +136,26 @@ interface NetworkClient {
     suspend fun updatePeer(address: String, node: Node)
 }
 
-class NetworkWebClient: NetworkClient {
+class NetworkWebClient(private val networkId: String): NetworkClient {
     private val client = HttpClient(CIO) {
         install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
             json()
+        }
+
+        defaultRequest {
+            contentType(ContentType.Application.Json)
+            headers.appendIfNameAbsent("X-Network-ID", networkId)
         }
     }
 
     override suspend fun broadcastPeer(address: String, node: Node) {
         client.post("$address/network/node?broadcast=true") {
-            contentType(ContentType.Application.Json)
             setBody(node)
         }
     }
 
     override suspend fun broadcastBlock(address: String, block: Block) {
         client.post("$address/blockchain/block") {
-            contentType(ContentType.Application.Json)
             setBody(block)
         }
     }
@@ -198,7 +202,6 @@ class NetworkWebClient: NetworkClient {
 
     override suspend fun updatePeer(address: String, node: Node) {
         val response = runBlocking { client.post("$address/network/node?broadcast=true") {
-            contentType(ContentType.Application.Json)
             setBody(node)
         } }
         if (response.status != HttpStatusCode.Created) {
@@ -224,13 +227,3 @@ class NetworkWebClient: NetworkClient {
         return response.body<List<Block>>()
     }
 }
-
-fun Node.toStore() = StoreNode(
-    address,
-    type.name
-)
-
-fun StoreNode.toNode() = Node(
-    address,
-    NodeType.valueOf(type)
-)
