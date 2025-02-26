@@ -1,0 +1,34 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App 1" type="KtorApplicationConfigurationType" factoryName="Ktor">
+    <envs>
+      <env name="DB_PASS" value="password" />
+      <env name="DB_URL" value="jdbc:postgresql://localhost:5432/postgres" />
+      <env name="DB_USER" value="postgres" />
+      <env name="NODE_ADDRESS" value="http://localhost:8081" />
+      <env name="NODE_MODE" value="PUBLISHER" />
+      <env name="PORT" value="8081" />
+      <env name="PUBLISHER_PUBLIC_KEY" value="MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAEje4IzKZB+pqvn5iT9QLgX97HtigQYQ6D5BXVWh8vBfvGPCzDtmSOhsji753dPciU" />
+      <env name="PUBLISHER_SIGNING_KEY" value="MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBitZRQG15sGSSyBKRBZ96XDkx+t03p3P4ugCgYIKoZIzj0DAQGhNAMyAASN7gjMpkH6mq+fmJP1AuBf3se2KBBhDoPkFdVaHy8F+8Y8LMO2ZI6GyOLvnd09yJQ=" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="org.avisen.app.AppKt" />
+    <module name="gray-matter.app.main" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.avisen.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="alternativeJrePath" />
+    <option name="alternativeJrePathEnabled" value="false" />
+    <option name="includeProvidedScope" value="false" />
+    <option name="mainClass" value="org.avisen.app.AppKt" />
+    <option name="passParentEnvs" value="true" />
+    <option name="programParameters" value="" />
+    <option name="shortenCommandLine" />
+    <option name="vmParameters" />
+    <option name="workingDirectory" value="$PROJECT_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

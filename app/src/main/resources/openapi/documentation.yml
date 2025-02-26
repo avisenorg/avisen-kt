@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: Avisen
+  description: Avisen is a blockchain and network used to secure news articles from edits, tampering, and censorship.
+  version: 0.0.1
+paths:
+  /status:
+    get:
+      summary: Returns info about this node.
+      description: Returns info about this node, including health.
+      responses:
+        "200":
+          description: All health checks have been loaded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nodeInfo:
+                    $ref: '#/components/schemas/NodeInfo'
+
+  /blockchain:
+    get:
+      summary: Get the blockchain
+      description: Returns a subset of the blockchain.
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - ASC
+              - DESC
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Block'
+
+  /blockchain/block:
+    post:
+      summary: Process a specific block
+      description: Processes a block and after verifying, adds it to the blockchain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Block'
+      responses:
+        "201":
+          description: The block was successfully verified and added to the blockchain
+        "400":
+          description: Something failed when adding the block to the blockchain. Likely because verifying the block failed.
+
+  /blockchain/block/{hash}:
+    get:
+      summary: Get a specific block
+      description: Returns a block or an error if it does not exist.
+      parameters:
+        - name: hash
+          in: path
+          required: true
+          schema:
+            type: string
+            example: ef2fd456eb5ea817ad180ce1d29f79e82a999609bfb9027108f76416118c47e2
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Block'
+        "404":
+          description: Not found
+
+  /network:
+    get:
+      summary: Node information
+      description: Returns only the network information of the node.
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  peers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NodeInfo'
+
+  /network/node:
+    post:
+      summary: Add a node
+      description: Adds a node to the list of the node's peers.
+      parameters:
+      - name: broadcast
+        in: query
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeInfo'
+      responses:
+        "201":
+          description: Created
+
+  /util/crypto/key-pair:
+    post:
+      summary: Generates a key pair
+      description: Generates an ECDSA key pair. Is not sent to the network peers or saved in the database.
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyPairString'
+
+  /util/crypto/sign:
+    post:
+      summary: Signs data
+      description: Signs data with the given private key and returns the signature
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningPayload'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Signature'
+
+components:
+  schemas:
+    NodeInfo:
+      type: object
+      properties:
+        address:
+          type: string
+        type:
+          type: string
+          enum:
+            - PUBLISHER
+            - REPLICA
+            -
+    Block:
+      type: object
+      properties:
+        hash:
+          type: string
+        previousHash:
+          type: string
+        data:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        height:
+          type: integer
+          format: int64
+
+    KeyPairString:
+      type: object
+      properties:
+        privateKey:
+          type: string
+        publicKey:
+          type: string
+
+    SigningPayload:
+      type: object
+      properties:
+        privateKey:
+          type: string
+        data:
+          type: string
+
+    Signature:
+      type: object
+      properties:
+        signature:
+          type: string
