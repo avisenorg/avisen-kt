@@ -22,10 +22,15 @@ import org.avisen.sql.Db
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
+import io.ktor.server.application.createApplicationPlugin
+import io.ktor.server.application.hooks.CallSetup
 import io.ktor.server.application.install
+import io.ktor.server.plugins.BadRequestException
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.plugins.openapi.openAPI
 import io.ktor.server.request.receive
+import io.ktor.server.request.uri
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
@@ -34,6 +39,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import java.util.UUID
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -46,6 +52,7 @@ fun Application.module() {
     val selfAddress = environment.config.property("ktor.node.address").getString()
     val donorNode = environment.config.propertyOrNull("ktor.node.donor")?.getString()
     val nodeMode = environment.config.property("ktor.node.mode").getString()
+    var networkId = environment.config.property("ktor.node.networkId").getString()
     val publisherSigningKey = environment.config.propertyOrNull("ktor.node.publisher.signingKey")?.getString()
     val publisherPublicKey = environment.config.propertyOrNull("ktor.node.publisher.publicKey")?.getString()
 
@@ -54,6 +61,29 @@ fun Application.module() {
             prettyPrint = true
         })
     }
+
+    install(DefaultHeaders) {
+        header("X-Network-ID", networkId)
+    }
+
+    val HeaderValidatorPlugin = createApplicationPlugin("HeaderValidatorPlugin") {
+        on(CallSetup) { call ->
+            if (!(call.request.uri.contains("status") || call.request.uri.contains("util"))) {
+                if (!call.request.headers.contains("X-Network-ID")) {
+                    call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Required X-Network-ID is missing"))
+                    return@on
+                }
+
+                val networkIdHeader = call.request.headers["X-Network-ID"]
+                if (networkIdHeader != networkId) {
+                    call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Network ID $networkIdHeader does not match expected network id"))
+                    return@on
+                }
+            }
+        }
+    }
+
+    install(HeaderValidatorPlugin)
 
     setupSecurity()
 
@@ -65,8 +95,7 @@ fun Application.module() {
     environment.log.info("Starting up node as ${nodeInfo.type}")
 
     if (nodeInfo.type != NodeType.UTILITY) {
-        val storage = storage()
-        val network = Network(NetworkWebClient(), storage)
+        val network = Network(NetworkWebClient(networkId))
         if (nodeInfo.type == NodeType.PUBLISHER && publisherSigningKey == null) {
             throw RuntimeException("A Publisher Signing Key is required when starting a node in PUBLISHER mode.")
         }
@@ -79,10 +108,12 @@ fun Application.module() {
             throw RuntimeException("A Donor is required when starting a node in REPLICA mode.")
         }
 
-        val blockchain = Blockchain(storage)
+        val blockchain = Blockchain(storage())
         // If a donor node has been specified,
         // get the blockchain, transactions, and network from it
         if (donorNode != null) {
+            environment.log.info("Starting with network id: $networkId")
+
             environment.log.info("Donor node address found. Starting donor process.")
 
             environment.log.info("Starting download of network peers from donor...")
@@ -135,6 +166,8 @@ fun Application.module() {
         } else {
             if (blockchain.chain(0, null, null, null).isEmpty()) {
                 environment.log.info("No donor node address found. Beginning genesis...")
+                networkId = UUID.randomUUID().toString()
+
                 blockchain.processBlock(Block.genesis())
             } else {
                 environment.log.info("No donor node address found. Blockchain already detected.")
@@ -286,7 +319,7 @@ fun Application.module() {
         openAPI(path="api", swaggerFile = "openapi/documentation.yml")
 
         get("/status") {
-            call.respond(Info(nodeInfo))
+            call.respond(Info(networkId, nodeInfo))
         }
 
         route("/util") {

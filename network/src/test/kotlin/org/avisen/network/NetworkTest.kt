@@ -1,77 +1,60 @@
 package org.avisen.network
 
-import org.avisen.blockchain.Block
-import org.avisen.storage.Storage
-import org.avisen.storage.StoreNode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
+import org.avisen.blockchain.Block
 import java.time.Instant
 
 class NetworkTest: DescribeSpec({
     describe("network") {
         describe("addPeer") {
             it("should add node to list of peers") {
+                val peers = mutableListOf<Node>()
                 val networkClient = mockk<NetworkClient>()
-                val storage = mockk<Storage>()
-                val network = Network(networkClient, storage)
-
-                every { storage.addNetworkPeer(any()) } returns Unit
-                every { storage.getNetworkPeer(any()) } returns null
+                val network = Network(networkClient, peers)
 
                 network.addPeer(Node("test", NodeType.REPLICA), false)
 
-                coVerify(exactly = 1) { storage.getNetworkPeer(any()) }
-                coVerify(exactly = 1) { storage.addNetworkPeer(any()) }
+                peers shouldHaveSize 1
             }
 
             it("should not add duplicate peer") {
+                val peers = mutableListOf<Node>()
                 val networkClient = mockk<NetworkClient>()
-                val storage = mockk<Storage>()
-                val network = Network(networkClient, storage)
-
-                every { storage.addNetworkPeer(any()) } returns Unit
-                every { storage.getNetworkPeer(any()) } returns StoreNode("test", NodeType.REPLICA.name)
+                val network = Network(networkClient, peers)
 
                 network.addPeer(Node("test", NodeType.REPLICA), false)
                 network.addPeer(Node("test", NodeType.REPLICA), false)
 
-                coVerify(exactly = 2) { storage.getNetworkPeer(any()) }
-                coVerify(exactly = 0) { storage.addNetworkPeer(any()) }
+                peers shouldHaveSize 1
             }
 
             it("should broadcast new peer") {
+                val peers = mutableListOf<Node>()
                 val networkClient = mockk<NetworkClient>()
-                val storage = mockk<Storage>()
-                val network = Network(networkClient, storage)
+                val network = Network(networkClient, peers)
 
                 coEvery { networkClient.broadcastPeer(any(), any()) } returns Unit
-                every { storage.addNetworkPeer(any()) } returns Unit
-                every { storage.getNetworkPeer(any()) } returns null
-                every { storage.peers() } returns listOf(StoreNode("test2", NodeType.REPLICA.name))
 
                 network.addPeer(Node("first", NodeType.REPLICA), false)
                 network.addPeer(Node("test", NodeType.REPLICA), true)
 
+                peers shouldHaveSize 2
+
                 coVerify(exactly = 1) { networkClient.broadcastPeer(any(), any()) }
-                coVerify(exactly = 2) { storage.getNetworkPeer(any()) }
             }
         }
 
         describe("broadcastBlock") {
             it("should broadcast block to every peer") {
+                val peers = mutableListOf<Node>()
                 val networkClient = mockk<NetworkClient>()
-                val storage = mockk<Storage>()
-                val network = Network(networkClient, storage)
+                val network = Network(networkClient, peers)
 
                 coEvery { networkClient.broadcastBlock(any(), any()) } returns Unit
-                every { storage.getNetworkPeer(any()) } returns null
-                every { storage.addNetworkPeer(any()) } returns Unit
-                every { storage.peers() } returns listOf(StoreNode("first", NodeType.REPLICA.name), StoreNode("test", NodeType.REPLICA.name))
 
                 network.addPeer(Node("first", NodeType.REPLICA), false)
                 network.addPeer(Node("second", NodeType.REPLICA), false)
