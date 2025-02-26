@@ -46,6 +46,12 @@ The repository is split into several packages:
 * storage: the interface/API for working with the storage layer.
 * sql: an implementation of the `storage` API for a PostgreSQL database.
 
+#### Dependencies
+Dependency versions are centralized in `gradle.properties`.
+New dependencies should be added to this list in alphabetical order.
+
+Avisen requires an installation of Java 21. The Temurin SDK is recommended.
+
 This project uses [Gradle](https://gradle.org/).
 To build and run the application, use the *Gradle* tool window by clicking the Gradle icon in the right-hand toolbar,
 or run it directly from the terminal:
@@ -58,12 +64,6 @@ or run it directly from the terminal:
 ### REST API Endpoints
 Avisen is a design-first REST API. 
 When making changes to the REST API, make sure changes are also made to /app/src/main/resources/openapi/documentation.yml.
-
-#### Dependencies
-Dependency versions are centralized in `gradle.properties`. 
-New dependencies should be added to this list in alphabetical order.
-
-Avisen requires an installation of Java 21. The Temurin SDK is recommended.
 
 ### Running locally
 Three nodes are configured to run locally if you use IntelliJ. 
