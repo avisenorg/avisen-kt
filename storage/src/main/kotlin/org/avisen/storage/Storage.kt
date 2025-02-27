@@ -26,6 +26,7 @@ data class StoreBlock(
 @Serializable
 data class StoreTransactionData(
     val articles: List<StoreArticle>,
+    val publishers: Set<String>,
 )
 
 @Serializable
