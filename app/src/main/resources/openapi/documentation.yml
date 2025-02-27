@@ -92,6 +92,28 @@ paths:
                   $ref: '#/components/schemas/Block'
         "404":
           description: Not found
+  /blockchain/article/{id}:
+    get:
+      summary: Get a specific article
+      description: Searches the entire blockchain for a specific article or an error if it does not exist.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: ef2fd456eb5ea817ad180ce1d29f79e82a999609bfb9027108f76416118c47e2
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+        "404":
+          description: Not found
 
   /network:
     get:
@@ -188,6 +210,27 @@ components:
         height:
           type: integer
           format: int64
+
+    Article:
+      type: object
+      properties:
+        id:
+          type: string
+        byline:
+          type: string
+        headline:
+          type: string
+        section:
+          type: string
+        content:
+          type: string
+        date:
+          type: string
+          format: date
+        publisherKey:
+          type: string
+        signature:
+          type: string
 
     KeyPairString:
       type: object

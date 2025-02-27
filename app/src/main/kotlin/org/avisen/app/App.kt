@@ -226,6 +226,20 @@ fun Application.module() {
                     call.respond(HttpStatusCode.OK, subchain)
                 }
 
+                route("/article/{articleId}") {
+                    get {
+                        val id = call.parameters["articleId"]!!
+
+                        val article = blockchain.getArticle(id)
+
+                        if (article != null) {
+                            call.respond(HttpStatusCode.OK, article)
+                        } else {
+                            call.response.status(HttpStatusCode.NotFound)
+                        }
+                    }
+                }
+
                 route("/block") {
                     post {
                         val newBlock = call.receive<Block>()

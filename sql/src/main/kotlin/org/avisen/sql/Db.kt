@@ -2,8 +2,10 @@ package org.avisen.sql
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import kotlinx.serialization.json.Json
 import org.avisen.storage.Storage
 import org.avisen.storage.StoreBlock
+import org.avisen.storage.StoreTransactionData
 import org.flywaydb.core.Flyway
 import org.jetbrains.exposed.dao.id.UIntIdTable
 import org.jetbrains.exposed.sql.Column
@@ -11,6 +13,9 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.javatime.timestamp
+import org.jetbrains.exposed.sql.json.contains
+import org.jetbrains.exposed.sql.json.extract
+import org.jetbrains.exposed.sql.json.jsonb
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.Instant
@@ -98,6 +103,21 @@ class Db(private val database: Database): Storage {
             }
     }
 
+    override fun article(id: String) = transaction(database) {
+        // Makes sure the id field doesn't have any sql injection attacks
+        val isId = "([A-Za-z0-9]){64}".toRegex().matches(id)
+
+        if (!isId) return@transaction null
+
+        val results = Blocks.selectAll()
+            .where { Blocks.data.contains("{ \"articles\": [ { \"id\": \"$id\" } ] }") }
+            .map {
+                it[Blocks.data].articles.firstOrNull()
+            }
+
+        results.firstOrNull()
+    }
+
     companion object {
         fun init(url: String, username: String, password: String): Db {
             val datasource = HikariDataSource(HikariConfig().apply {
@@ -117,10 +137,12 @@ class Db(private val database: Database): Storage {
     }
 }
 
+val format = Json { prettyPrint = false }
+
 object Blocks : UIntIdTable("block") {
     val hash: Column<String> = varchar("hash", 64)
     val previousHash: Column<String> = varchar("previous_hash", 64)
-    val data: Column<String> = varchar("data", 20000)
+    val data: Column<StoreTransactionData> = jsonb("data", format)
     val timestamp: Column<Long> = long("timestamp")
     val height: Column<UInt> = uinteger("height")
     val createDate: Column<Instant> = timestamp("create_date")
