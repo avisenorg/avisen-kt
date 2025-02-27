@@ -19,8 +19,10 @@ import java.time.Instant
 data class Blockchain(
     val storage: Storage,
     private val unprocessedArticles: MutableList<Article> = mutableListOf(),
+    private val unprocessedPublishers: MutableSet<String> = mutableSetOf(),
 ) {
-    val unprocessedCount get() = unprocessedArticles.size
+    val unprocessedArticlesCount get() = unprocessedArticles.size
+    val unprocessedPublishersCount get() = unprocessedPublishers.size
 
     fun getBlock(hash: String): Block? {
         return storage.getBlock(hash)?.toBlock()
@@ -72,7 +74,7 @@ data class Blockchain(
 
             val newBlock = Block(
                 previousHash,
-                TransactionData(unprocessedArticles),
+                TransactionData(unprocessedArticles.toList(), processPublishers(latestBlock.data.publishers)),
                 timestamp,
                 latestBlock.height + 1u
             )
@@ -80,10 +82,19 @@ data class Blockchain(
             storage.storeBlock(newBlock.toStore())
 
             unprocessedArticles.clear()
+            unprocessedPublishers.clear()
 
             return ProcessedArticle(true, newBlock)
         }
         return ProcessedArticle(true, null)
+    }
+
+    fun acceptPublisher(publicKey: String) {
+        unprocessedPublishers.add(publicKey)
+    }
+
+    private fun processPublishers(existingPublishers: Set<String>): Set<String> {
+        return existingPublishers + unprocessedPublishers
     }
 
     /**
@@ -116,10 +127,10 @@ data class Block(
     @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val hash: String = hash(previousHash + timestamp + data),
 ) {
     companion object {
-        fun genesis(): Block {
+        fun genesis(genesisPublisher: String = ""): Block {
             return Block(
                 "",
-                TransactionData(listOf()),
+                TransactionData(listOf(), setOf(genesisPublisher)),
                 Instant.now().toEpochMilli(),
                 0u,
             )
@@ -130,6 +141,7 @@ data class Block(
 @Serializable
 data class TransactionData(
     val articles: List<Article>,
+    val publishers: Set<String>,
 )
 
 @Serializable
@@ -170,9 +182,10 @@ fun Block.toStore() = StoreBlock(hash, previousHash, data.toStoreTransactionData
 fun StoreBlock.toBlock() = Block(previousHash, data.toTransactionData(), timestamp, height, hash)
 fun List<StoreBlock>.toBlocks() = map { it.toBlock() }
 fun TransactionData.toStoreTransactionData() = StoreTransactionData(
-    articles.map { it.toStoreArticle() }
+    articles.map { it.toStoreArticle() },
+    publishers,
 )
-fun StoreTransactionData.toTransactionData() = TransactionData(articles.map { it.toArticle() })
+fun StoreTransactionData.toTransactionData() = TransactionData(articles.map { it.toArticle() }, publishers)
 
 fun Article.toStoreArticle() = StoreArticle(
     id,

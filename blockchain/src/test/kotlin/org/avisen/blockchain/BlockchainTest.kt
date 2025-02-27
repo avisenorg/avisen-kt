@@ -117,7 +117,32 @@ class BlockchainTest : DescribeSpec({
                     newBlock.previousHash shouldBe genesisBlock.hash
                     newBlock.height shouldBe 1u
 
-                    blockchain.unprocessedCount shouldBe 0
+                    blockchain.unprocessedArticlesCount shouldBe 0
+                }
+
+                it("should add unprocessed publisher to block") {
+                    val genesisBlock = Block.genesis("test")
+                    val storage = mockk<Storage>()
+                    val blockchain = Blockchain(storage, unprocessedPublishers = mutableSetOf("test2"))
+                    val publisherKeyPair = generateKeyPair().shouldNotBeNull()
+
+                    every { storage.latestBlock() } returns genesisBlock.toStore()
+                    every { storage.storeBlock(any()) } returns Unit
+
+                    // First add the maximum amount of articles
+                    repeat(9) {
+                        val processArticle = blockchain.processArticle(randomArticle(publisherKeyPair))
+                        processArticle.processed shouldBe true
+                        processArticle.block.shouldBeNull()
+                    }
+
+                    val newBlock = blockchain.processArticle(randomArticle(publisherKeyPair)).block.shouldNotBeNull()
+
+                    newBlock.previousHash shouldBe genesisBlock.hash
+                    newBlock.height shouldBe 1u
+
+                    blockchain.unprocessedArticlesCount shouldBe 0
+                    blockchain.unprocessedPublishersCount shouldBe 0
                 }
             }
         }
@@ -186,14 +211,14 @@ class BlockchainTest : DescribeSpec({
 
             genesisBlock.previousHash.shouldBeEmpty()
             genesisBlock.height shouldBe 0u
-            genesisBlock.data shouldBe TransactionData(emptyList())
+            genesisBlock.data shouldBe TransactionData(emptyList(), setOf(""))
         }
     }
 })
 
 fun randomBlock(previousHash: String, height: UInt, timestamp: Long = Instant.now().toEpochMilli()) = Block(
     previousHash = previousHash,
-    data = TransactionData(emptyList()),
+    data = TransactionData(emptyList(), emptySet()),
     timestamp = timestamp,
     height = height,
 )

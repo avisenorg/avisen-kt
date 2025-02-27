@@ -168,7 +168,7 @@ fun Application.module() {
                 environment.log.info("No donor node address found. Beginning genesis...")
                 networkId = UUID.randomUUID().toString()
 
-                blockchain.processBlock(Block.genesis())
+                blockchain.processBlock(Block.genesis(publisherPublicKey!!))
             } else {
                 environment.log.info("No donor node address found. Blockchain already detected.")
             }
