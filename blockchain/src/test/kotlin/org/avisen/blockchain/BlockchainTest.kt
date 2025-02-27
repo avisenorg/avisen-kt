@@ -186,14 +186,14 @@ class BlockchainTest : DescribeSpec({
 
             genesisBlock.previousHash.shouldBeEmpty()
             genesisBlock.height shouldBe 0u
-            genesisBlock.data shouldBe "Genesis"
+            genesisBlock.data shouldBe TransactionData(emptyList())
         }
     }
 })
 
 fun randomBlock(previousHash: String, height: UInt, timestamp: Long = Instant.now().toEpochMilli()) = Block(
     previousHash = previousHash,
-    data = "test",
+    data = TransactionData(emptyList()),
     timestamp = timestamp,
     height = height,
 )

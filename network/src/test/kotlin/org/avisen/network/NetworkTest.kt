@@ -6,6 +6,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import org.avisen.blockchain.Block
+import org.avisen.blockchain.TransactionData
 import java.time.Instant
 
 class NetworkTest: DescribeSpec({
@@ -59,7 +60,7 @@ class NetworkTest: DescribeSpec({
                 network.addPeer(Node("first", NodeType.REPLICA), false)
                 network.addPeer(Node("second", NodeType.REPLICA), false)
 
-                network.broadcastBlock(Block("prevHash", "data", Instant.now().toEpochMilli(), 1u))
+                network.broadcastBlock(Block("prevHash", TransactionData(emptyList()), Instant.now().toEpochMilli(), 1u))
 
                 coVerify(exactly = 2) { networkClient.broadcastBlock(any(), any()) }
             }

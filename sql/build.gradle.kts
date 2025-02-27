@@ -14,6 +14,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposed")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposed")
+    implementation("org.jetbrains.exposed:exposed-json:$exposed")
     implementation("com.zaxxer:HikariCP:$hikari")
     implementation("org.flywaydb:flyway-core:$flyway")
     implementation("org.flywaydb:flyway-database-postgresql:$flyway")
