@@ -23,6 +23,8 @@ class Db(private val database: Database): Storage {
     override fun storeBlock(block: StoreBlock) {
         transaction(database) {
             Blocks.insert {
+                it[publisherKey] = block.publisherKey
+                it[signature] = block.signature
                 it[hash] = block.hash
                 it[previousHash] = block.previousHash
                 it[data] = block.data
@@ -36,6 +38,8 @@ class Db(private val database: Database): Storage {
     override fun getBlock(hash: String): StoreBlock? = transaction(database) {
         Blocks.selectAll().where { Blocks.hash eq hash }.singleOrNull()?.let {
             StoreBlock(
+                it[Blocks.publisherKey],
+                it[Blocks.signature],
                 it[Blocks.hash],
                 it[Blocks.previousHash],
                 it[Blocks.data],
@@ -51,6 +55,8 @@ class Db(private val database: Database): Storage {
            .orderBy(Blocks.height to SortOrder.DESC)
            .firstOrNull()?.let {
                StoreBlock(
+                   it[Blocks.publisherKey],
+                   it[Blocks.signature],
                    it[Blocks.hash],
                    it[Blocks.previousHash],
                    it[Blocks.data],
@@ -74,6 +80,8 @@ class Db(private val database: Database): Storage {
             .offset((page * size).toLong())
             .map {
                 StoreBlock(
+                    it[Blocks.publisherKey],
+                    it[Blocks.signature],
                     it[Blocks.hash],
                     it[Blocks.previousHash],
                     it[Blocks.data],
@@ -92,6 +100,8 @@ class Db(private val database: Database): Storage {
             .offset((10 * page).toLong())
             .map {
                 StoreBlock(
+                    it[Blocks.publisherKey],
+                    it[Blocks.signature],
                     it[Blocks.hash],
                     it[Blocks.previousHash],
                     it[Blocks.data],
@@ -139,6 +149,8 @@ class Db(private val database: Database): Storage {
 val format = Json { prettyPrint = false }
 
 object Blocks : UIntIdTable("block") {
+    val publisherKey: Column<String> = varchar("publisher_key", 100)
+    val signature: Column<String> = varchar("signature", 76)
     val hash: Column<String> = varchar("hash", 64)
     val previousHash: Column<String> = varchar("previous_hash", 64)
     val data: Column<StoreTransactionData> = jsonb("data", format)

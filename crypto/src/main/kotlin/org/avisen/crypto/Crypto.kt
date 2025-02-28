@@ -79,7 +79,7 @@ fun verifySignature(publicKey: PublicKey?, data: String, signature: ByteArray?):
         ecdsaVerify.update(data.toByteArray())
         return ecdsaVerify.verify(signature)
     } catch (e: java.lang.Exception) {
-        throw RuntimeException(e)
+        return false
     }
 }
 

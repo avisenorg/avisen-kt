@@ -15,6 +15,8 @@ interface Storage {
 }
 
 data class StoreBlock(
+    val publisherKey: String,
+    val signature: String,
     val hash: String,
     val previousHash: String,
     val data: StoreTransactionData,

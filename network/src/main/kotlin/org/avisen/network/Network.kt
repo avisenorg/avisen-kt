@@ -53,6 +53,11 @@ data class NodeInfo(
 }
 
 @Serializable
+data class Publisher(
+    val publicKey: String,
+)
+
+@Serializable
 data class Network(
     @Transient private val client: NetworkClient = NetworkWebClient(""),
     private val peers: MutableList<Node> = mutableListOf(),

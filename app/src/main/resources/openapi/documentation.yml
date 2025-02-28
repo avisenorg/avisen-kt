@@ -152,6 +152,20 @@ paths:
         "201":
           description: Created
 
+  /network/node/publisher:
+    post:
+      summary: Add a publisher
+      description: Adds a publisher to the block's list of unprocessed publishers. Once a block is minted, the publisher can mint its own blocks.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+      responses:
+        "200":
+          description: Ok
+
   /util/crypto/key-pair:
     post:
       summary: Generates a key pair
@@ -252,4 +266,10 @@ components:
       type: object
       properties:
         signature:
+          type: string
+
+    Publisher:
+      type: object
+      properties:
+        publicKey:
           type: string

@@ -5,6 +5,9 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import org.avisen.crypto.hash
 import org.avisen.crypto.hexStringToByteArray
+import org.avisen.crypto.sign
+import org.avisen.crypto.toHexString
+import org.avisen.crypto.toPrivateKey
 import org.avisen.crypto.toPublicKey
 import org.avisen.crypto.verifySignature
 import org.avisen.storage.Storage
@@ -18,6 +21,8 @@ import java.time.Instant
  */
 data class Blockchain(
     val storage: Storage,
+    // private, public
+    val publisherKeys: Pair<String, String>,
     private val unprocessedArticles: MutableList<Article> = mutableListOf(),
     private val unprocessedPublishers: MutableSet<String> = mutableSetOf(),
 ) {
@@ -54,7 +59,7 @@ data class Blockchain(
     fun processArticle(article: Article): ProcessedArticle {
         // First verify the Article's signature
         val verified = verifySignature(
-            article.publisherKey.toPublicKey(),
+            article.authorKey.toPublicKey(),
             article.byline + article.headline + article.section + article.content + article.date,
             article.signature.hexStringToByteArray()
         )
@@ -72,9 +77,13 @@ data class Blockchain(
             val latestBlock = storage.latestBlock()
             val previousHash = latestBlock!!.hash
 
+            val data = TransactionData(unprocessedArticles.toList(), processPublishers(latestBlock.data.publishers))
+            val newHeight = latestBlock.height + 1u
             val newBlock = Block(
+                publisherKeys.second,
+                sign(publisherKeys.first.toPrivateKey(), previousHash + data + timestamp + newHeight).toHexString(),
                 previousHash,
-                TransactionData(unprocessedArticles.toList(), processPublishers(latestBlock.data.publishers)),
+                data,
                 timestamp,
                 latestBlock.height + 1u
             )
@@ -110,6 +119,10 @@ data class Blockchain(
             if (block.previousHash != latestBlock.hash) return false
 
             if (block.timestamp <= latestBlock.timestamp) return false
+
+            if (!latestBlock.data.publishers.contains(block.publisherKey)) return false
+
+            if (!verifySignature(block.publisherKey.toPublicKey(), block.previousHash + block.data + block.timestamp + block.height, block.signature.hexStringToByteArray())) return false
         }
 
         storage.storeBlock(block.toStore())
@@ -119,6 +132,8 @@ data class Blockchain(
 
 @Serializable
 data class Block(
+    val publisherKey: String,
+    val signature: String,
     val previousHash: String,
     // Data represents articles that have been minted into a json string
     val data: TransactionData,
@@ -127,12 +142,17 @@ data class Block(
     @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val hash: String = hash(previousHash + timestamp + data),
 ) {
     companion object {
-        fun genesis(genesisPublisher: String = ""): Block {
+        fun genesis(genesisPublisherKey: String = "", genesisSigningKey: String = ""): Block {
+            val data = TransactionData(listOf(), setOf(genesisPublisherKey))
+            val timestamp = Instant.now().toEpochMilli()
+            val height = 0u
             return Block(
+                genesisPublisherKey,
+                sign(genesisSigningKey.toPrivateKey(), "" + data + timestamp + height).toHexString(),
                 "",
-                TransactionData(listOf(), setOf(genesisPublisher)),
-                Instant.now().toEpochMilli(),
-                0u,
+                data,
+                timestamp,
+                height,
             )
         }
     }
@@ -149,7 +169,7 @@ data class Article(
     /**
      * The public key corresponding to the publisher of the article
      */
-    val publisherKey: String,
+    val authorKey: String,
     val byline: String,
     val headline: String,
     /**
@@ -168,7 +188,7 @@ data class Article(
      * The ECDSA signature of the Article (byline + headline + section + content + date)
      */
     val signature: String,
-    @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(publisherKey + byline + headline + section + content + date),
+    @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(authorKey + byline + headline + section + content + date),
 ) {
 
 }
@@ -178,8 +198,8 @@ data class ProcessedArticle(
     val block: Block?,
 )
 
-fun Block.toStore() = StoreBlock(hash, previousHash, data.toStoreTransactionData(), timestamp, height)
-fun StoreBlock.toBlock() = Block(previousHash, data.toTransactionData(), timestamp, height, hash)
+fun Block.toStore() = StoreBlock(publisherKey, signature, hash, previousHash, data.toStoreTransactionData(), timestamp, height)
+fun StoreBlock.toBlock() = Block(publisherKey, signature, previousHash, data.toTransactionData(), timestamp, height, hash)
 fun List<StoreBlock>.toBlocks() = map { it.toBlock() }
 fun TransactionData.toStoreTransactionData() = StoreTransactionData(
     articles.map { it.toStoreArticle() },
@@ -189,7 +209,7 @@ fun StoreTransactionData.toTransactionData() = TransactionData(articles.map { it
 
 fun Article.toStoreArticle() = StoreArticle(
     id,
-    publisherKey,
+    authorKey,
     byline,
     headline,
     section,
