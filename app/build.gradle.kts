@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
@@ -38,4 +40,28 @@ dependencies {
 
 application {
     mainClass.set("org.avisen.app.AppKt")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "org.avisen.app.AppKt"
+    }
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("app.jar")
+    }
+}
+
+tasks.withType<ShadowJar> {
+    dependsOn("startScripts")
+}
+
+tasks.named("distTar") {
+    dependsOn("shadowJar")
+}
+
+tasks.named("distZip") {
+    dependsOn("shadowJar")
 }

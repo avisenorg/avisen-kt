@@ -1,4 +1,5 @@
 plugins {
+    base
     kotlin("jvm") apply false
 }
 
