@@ -56,6 +56,12 @@ fun Application.module() {
     val publisherSigningKey = environment.config.propertyOrNull("ktor.node.publisher.signingKey")?.getString()
     val publisherPublicKey = environment.config.propertyOrNull("ktor.node.publisher.publicKey")?.getString()
 
+    // When running locally with docker, sometimes the application can beat the database when starting
+    if (networkId == "local") {
+        // Wait for the db to come up
+        Thread.sleep(2000)
+    }
+
     install(ContentNegotiation) {
         json(Json {
             prettyPrint = true

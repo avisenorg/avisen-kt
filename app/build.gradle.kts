@@ -39,3 +39,15 @@ dependencies {
 application {
     mainClass.set("org.avisen.app.AppKt")
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "org.avisen.app.AppKt"
+    }
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("app.jar")
+    }
+}

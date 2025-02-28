@@ -1,4 +1,18 @@
 services:
+  node-1:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_PASS=password
+      - DB_URL=jdbc:postgresql://postgres-1:5432/postgres
+      - DB_USER=postgres
+      - NETWORK_ID=local
+      - NODE_ADDRESS=http://localhost:8081
+      - NODE_MODE=PUBLISHER
+      - PORT=8081
+      - PUBLISHER_PUBLIC_KEY=MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAEje4IzKZB+pqvn5iT9QLgX97HtigQYQ6D5BXVWh8vBfvGPCzDtmSOhsji753dPciU
+      - PUBLISHER_SIGNING_KEY=MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBitZRQG15sGSSyBKRBZ96XDkx+t03p3P4ugCgYIKoZIzj0DAQGhNAMyAASN7gjMpkH6mq+fmJP1AuBf3se2KBBhDoPkFdVaHy8F+8Y8LMO2ZI6GyOLvnd09yJQ\=
   postgres-1:
     image: postgres:17-alpine
     ports:
