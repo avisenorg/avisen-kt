@@ -55,6 +55,7 @@ ktor {
 }
 
 tasks.withType<ShadowJar> {
+    mergeServiceFiles()
     dependsOn("startScripts")
 }
 
