@@ -108,7 +108,7 @@ fun Application.module() {
             throw RuntimeException("A Donor is required when starting a node in REPLICA mode.")
         }
 
-        val blockchain = Blockchain(storage(), Pair(publisherSigningKey!!, publisherPublicKey!!))
+        val blockchain = Blockchain(storage(), Pair(publisherSigningKey ?: "", publisherPublicKey ?: ""))
         // If a donor node has been specified,
         // get the blockchain, transactions, and network from it
         if (donorNode != null) {
@@ -168,7 +168,7 @@ fun Application.module() {
                 environment.log.info("No donor node address found. Beginning genesis...")
                 networkId = UUID.randomUUID().toString()
 
-                blockchain.processBlock(Block.genesis(publisherPublicKey, publisherSigningKey))
+                blockchain.processBlock(Block.genesis(publisherPublicKey!!, publisherSigningKey!!))
             } else {
                 environment.log.info("No donor node address found. Blockchain already detected.")
             }

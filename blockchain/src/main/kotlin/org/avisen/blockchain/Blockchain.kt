@@ -120,7 +120,7 @@ data class Blockchain(
 
             if (block.timestamp <= latestBlock.timestamp) return false
 
-            if (!block.data.publishers.contains(latestBlock.publisherKey)) return false
+            if (!latestBlock.data.publishers.contains(block.publisherKey)) return false
 
             if (!verifySignature(block.publisherKey.toPublicKey(), block.previousHash + block.data + block.timestamp + block.height, block.signature.hexStringToByteArray())) return false
         }
