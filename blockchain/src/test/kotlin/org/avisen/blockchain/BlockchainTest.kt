@@ -21,11 +21,11 @@ import java.security.PublicKey
 import java.time.Instant
 import java.time.LocalDate
 
+const val publisherPublicKey = "MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAEje4IzKZB+pqvn5iT9QLgX97HtigQYQ6D5BXVWh8vBfvGPCzDtmSOhsji753dPciU"
+const val publisherSigningKey = "MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBitZRQG15sGSSyBKRBZ96XDkx+t03p3P4ugCgYIKoZIzj0DAQGhNAMyAASN7gjMpkH6mq+fmJP1AuBf3se2KBBhDoPkFdVaHy8F+8Y8LMO2ZI6GyOLvnd09yJQ="
+
 class BlockchainTest : DescribeSpec({
     setupSecurity()
-
-    val publisherPublicKey = "MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAEje4IzKZB+pqvn5iT9QLgX97HtigQYQ6D5BXVWh8vBfvGPCzDtmSOhsji753dPciU"
-    val publisherSigningKey = "MHsCAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQEEYTBfAgEBBBitZRQG15sGSSyBKRBZ96XDkx+t03p3P4ugCgYIKoZIzj0DAQGhNAMyAASN7gjMpkH6mq+fmJP1AuBf3se2KBBhDoPkFdVaHy8F+8Y8LMO2ZI6GyOLvnd09yJQ="
 
     describe("Blockchain") {
         describe("getBlock") {
@@ -33,7 +33,7 @@ class BlockchainTest : DescribeSpec({
                 val storage = mockk<Storage>()
                 val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
 
-                val randomBlock = randomBlock("", 1u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val randomBlock = randomBlock("", 1u)
                 every { storage.getBlock(any()) } returns randomBlock.toStore()
 
                 blockchain.getBlock(randomBlock.hash) shouldBe randomBlock
@@ -47,15 +47,15 @@ class BlockchainTest : DescribeSpec({
 
                 every { storage.blocks(any(), any(), any()) } returns listOf(
                     Block.genesis(publisherPublicKey, publisherSigningKey).toStore(),
-                    randomBlock("", 1u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 2u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 3u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 4u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 5u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 6u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 7u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 8u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 9u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
+                    randomBlock("", 1u).toStore(),
+                    randomBlock("", 2u).toStore(),
+                    randomBlock("", 3u).toStore(),
+                    randomBlock("", 4u).toStore(),
+                    randomBlock("", 5u).toStore(),
+                    randomBlock("", 6u).toStore(),
+                    randomBlock("", 7u).toStore(),
+                    randomBlock("", 8u).toStore(),
+                    randomBlock("", 9u).toStore(),
                 )
 
                 blockchain.chain(0, null, null, null) shouldHaveSize 10
@@ -67,18 +67,18 @@ class BlockchainTest : DescribeSpec({
 
                 every { storage.blocks(0, any(), any()) } returns listOf(
                     Block.genesis(publisherPublicKey, publisherSigningKey).toStore(),
-                    randomBlock("", 1u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 2u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 3u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 4u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
+                    randomBlock("", 1u).toStore(),
+                    randomBlock("", 2u).toStore(),
+                    randomBlock("", 3u).toStore(),
+                    randomBlock("", 4u).toStore(),
                 )
 
                 every { storage.blocks(1, any(), any()) } returns listOf(
-                    randomBlock("", 5u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 6u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 7u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 8u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
-                    randomBlock("", 9u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore(),
+                    randomBlock("", 5u).toStore(),
+                    randomBlock("", 6u).toStore(),
+                    randomBlock("", 7u).toStore(),
+                    randomBlock("", 8u).toStore(),
+                    randomBlock("", 9u).toStore(),
                 )
 
                 blockchain.chain(0, 5, null, null) shouldHaveSize 5
@@ -163,8 +163,6 @@ class BlockchainTest : DescribeSpec({
                     TransactionData(
                         emptyList(), setOf(publisherPublicKey)
                     ),
-                    publisherPublicKey,
-                    publisherSigningKey,
                 )
 
                 every { storage.latestBlock() } returns genesisBlock.toStore()
@@ -177,9 +175,9 @@ class BlockchainTest : DescribeSpec({
             it("should reject block with invalid height") {
                 val storage = mockk<Storage>()
                 val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
-                val badBlock = randomBlock("", 0u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val badBlock = randomBlock("", 0u)
 
-                every { storage.latestBlock() } returns randomBlock("", 0u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore()
+                every { storage.latestBlock() } returns randomBlock("", 0u).toStore()
                 every { storage.chainSize() } returns 1
                 blockchain.processBlock(badBlock) shouldBe false
             }
@@ -187,9 +185,9 @@ class BlockchainTest : DescribeSpec({
             it("should reject block without matching previousHash") {
                 val storage = mockk<Storage>()
                 val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
-                val badBlock = randomBlock("", 1u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val badBlock = randomBlock("", 1u)
 
-                every { storage.latestBlock() } returns randomBlock("", 0u, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey).toStore()
+                every { storage.latestBlock() } returns randomBlock("", 0u).toStore()
                 every { storage.chainSize() } returns 0
 
                 blockchain.processBlock(badBlock) shouldBe false
@@ -199,7 +197,7 @@ class BlockchainTest : DescribeSpec({
                 val genesisBlock = Block.genesis(publisherPublicKey, publisherSigningKey)
                 val storage = mockk<Storage>()
                 val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
-                val goodBlock = randomBlock(genesisBlock.hash, genesisBlock.height + 1u, genesisBlock.timestamp + 1, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val goodBlock = randomBlock(genesisBlock.hash, genesisBlock.height + 1u, genesisBlock.timestamp + 1)
 
                 every { storage.latestBlock() } returns genesisBlock.toStore()
                 every { storage.chainSize() } returns 1
@@ -210,7 +208,7 @@ class BlockchainTest : DescribeSpec({
                 every { storage.latestBlock() } returns goodBlock.toStore()
                 every { storage.chainSize() } returns 2
 
-                val badBlock = randomBlock(goodBlock.hash, goodBlock.height + 1u, goodBlock.timestamp - 1, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val badBlock = randomBlock(goodBlock.hash, goodBlock.height + 1u, goodBlock.timestamp - 1)
                 blockchain.processBlock(badBlock) shouldBe false
 
                 verify(exactly = 1) { storage.storeBlock(any()) }
@@ -220,7 +218,7 @@ class BlockchainTest : DescribeSpec({
                 val genesisBlock = Block.genesis(publisherPublicKey, publisherSigningKey)
                 val storage = mockk<Storage>()
                 val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
-                val goodBlock = randomBlock(genesisBlock.hash, genesisBlock.height + 1u, genesisBlock.timestamp + 1, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey)
+                val goodBlock = randomBlock(genesisBlock.hash, genesisBlock.height + 1u, genesisBlock.timestamp + 1)
 
                 every { storage.latestBlock() } returns genesisBlock.toStore()
                 every { storage.chainSize() } returns 1
@@ -231,7 +229,7 @@ class BlockchainTest : DescribeSpec({
                 every { storage.latestBlock() } returns goodBlock.toStore()
                 every { storage.chainSize() } returns 2
 
-                val badBlock = randomBlock(goodBlock.hash, goodBlock.height + 1u, goodBlock.timestamp + 1, publisherKey = publisherPublicKey, publisherSigningKey = publisherSigningKey, signature = "invalid")
+                val badBlock = randomBlock(goodBlock.hash, goodBlock.height + 1u, goodBlock.timestamp + 1, signature = "invalid")
                 blockchain.processBlock(badBlock) shouldBe false
 
                 verify(exactly = 1) { storage.storeBlock(any()) }
@@ -257,11 +255,9 @@ fun randomBlock(
     data: TransactionData = TransactionData(
         emptyList(), emptySet()
     ),
-    publisherKey: String = "",
-    publisherSigningKey: String = "",
     signature: String? = null,
 ) = Block(
-    publisherKey = publisherKey,
+    publisherKey = publisherPublicKey,
     signature = signature ?: sign(publisherSigningKey.toPrivateKey(), previousHash + data + timestamp + height).toHexString(),
     previousHash = previousHash,
     data = data,
