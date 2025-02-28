@@ -233,7 +233,7 @@ fun randomArticle(publisherKeyPair: Pair<PrivateKey, PublicKey>): Article {
     val signature = sign(publisherKeyPair.first, byline + headline +section + content + date)
 
     return Article(
-        publisherKey = publisherKeyPair.second.getString(),
+        authorKey = publisherKeyPair.second.getString(),
         byline,
         headline,
         section,

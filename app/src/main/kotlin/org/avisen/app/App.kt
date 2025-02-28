@@ -25,7 +25,6 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.createApplicationPlugin
 import io.ktor.server.application.hooks.CallSetup
 import io.ktor.server.application.install
-import io.ktor.server.plugins.BadRequestException
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.plugins.openapi.openAPI
@@ -39,6 +38,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import org.avisen.network.Publisher
 import java.util.UUID
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -108,7 +108,7 @@ fun Application.module() {
             throw RuntimeException("A Donor is required when starting a node in REPLICA mode.")
         }
 
-        val blockchain = Blockchain(storage())
+        val blockchain = Blockchain(storage(), Pair(publisherSigningKey!!, publisherPublicKey!!))
         // If a donor node has been specified,
         // get the blockchain, transactions, and network from it
         if (donorNode != null) {
@@ -168,7 +168,7 @@ fun Application.module() {
                 environment.log.info("No donor node address found. Beginning genesis...")
                 networkId = UUID.randomUUID().toString()
 
-                blockchain.processBlock(Block.genesis(publisherPublicKey!!))
+                blockchain.processBlock(Block.genesis(publisherPublicKey, publisherSigningKey))
             } else {
                 environment.log.info("No donor node address found. Blockchain already detected.")
             }
@@ -201,6 +201,14 @@ fun Application.module() {
                         network.addPeer(node, broadcast)
 
                         call.response.status(HttpStatusCode.Created)
+                    }
+
+                    route("/publisher") {
+                        post {
+                            val newPublisher = call.receive<Publisher>()
+
+                            blockchain.acceptPublisher(newPublisher.publicKey)
+                        }
                     }
                 }
             }
@@ -288,7 +296,7 @@ fun Application.module() {
 
                     val article = call.receive<Article>()
 
-                    if (article.publisherKey == ""
+                    if (article.authorKey == ""
                         || article.byline == ""
                         || article.headline == ""
                         || article.section == ""
