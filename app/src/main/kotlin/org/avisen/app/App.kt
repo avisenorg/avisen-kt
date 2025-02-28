@@ -208,6 +208,8 @@ fun Application.module() {
                             val newPublisher = call.receive<Publisher>()
 
                             blockchain.acceptPublisher(newPublisher.publicKey)
+
+                            call.response.status(HttpStatusCode.OK)
                         }
                     }
                 }
