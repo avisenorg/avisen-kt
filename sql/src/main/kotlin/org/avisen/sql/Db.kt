@@ -139,7 +139,7 @@ class Db(private val database: Database): Storage {
                 transactionIsolation = "TRANSACTION_REPEATABLE_READ"
             })
 
-            Flyway.configure().dataSource(url, username, password).load().migrate()
+            Flyway.configure().validateMigrationNaming(true).dataSource(url, username, password).load().migrate()
 
             return Db(Database.connect(datasource))
         }
