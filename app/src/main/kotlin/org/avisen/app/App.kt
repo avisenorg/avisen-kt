@@ -52,7 +52,7 @@ fun Application.module() {
     val selfAddress = environment.config.property("ktor.node.address").getString()
     val donorNode = environment.config.propertyOrNull("ktor.node.donor")?.getString()
     val nodeMode = environment.config.property("ktor.node.mode").getString()
-    var networkId = environment.config.property("ktor.node.networkId").getString()
+    val networkId = environment.config.property("ktor.node.networkId").getString()
     val publisherSigningKey = environment.config.propertyOrNull("ktor.node.publisher.signingKey")?.getString()
     val publisherPublicKey = environment.config.propertyOrNull("ktor.node.publisher.publicKey")?.getString()
 
@@ -172,7 +172,6 @@ fun Application.module() {
         } else {
             if (blockchain.chain(0, null, null, null).isEmpty()) {
                 environment.log.info("No donor node address found. Beginning genesis...")
-                networkId = UUID.randomUUID().toString()
 
                 blockchain.processBlock(Block.genesis(publisherPublicKey!!, publisherSigningKey!!))
             } else {
