@@ -158,7 +158,7 @@ class BlockchainTest : DescribeSpec({
 
                 val keysToAdd = generateKeyPair().shouldNotBeNull()
                 val publicKey = keysToAdd.second.getString()
-                val signature = sign(keysToAdd.first, publicKey)
+                val signature = sign(publisherSigningKey.toPrivateKey(), publicKey)
 
                 blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe true
             }
