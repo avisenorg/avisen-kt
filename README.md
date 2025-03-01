@@ -10,7 +10,7 @@ Kotlin implementation of the Avisen blockchain protocol used to secure news arti
 ### Terminology
 * Node: a member of a network.
 * Genesis node: the first member of the network. Creates the genesis block.
-* Donor node: a node that is used to get the blockchain and the list of nodes in the network.
+* Boot node: a node that is used to connect with a network.
 * Publisher node: a node in the network that has permission to mint blocks.
 * Proof of Authority: the consensus mechanism for Avisen. Only certain nodes can mint new blocks.
 * Transaction: a single news article with its metadata.
@@ -48,9 +48,9 @@ GRANT ALL ON SCHEMA public TO YOUR_USERNAME;
 ```
 This ensures the database user has access to select and insert blocks, and control database migrations.
 
-The application should be provided with a donor node url address from an existing network.
-If a donor node is provided, then the app's blockchain and network will be populated from the donor.
-If a donor node is not provided, the application assumes it is the genesis node and will start its own network/blockchain.
+The application should be provided with a boot node url address from an existing network.
+If a boot node is provided, then the app's blockchain and network will be populated from the boot node.
+If a boot node is not provided, the application assumes it is the genesis node and will start its own network/blockchain.
 
 ### Running a Publisher node
 
@@ -64,10 +64,10 @@ A keypair will be generated for you.
 Examples of environment variable usage can be found in /idea/runConfigurations.
 
 * `DB_URL`: the url corresponding to the backing PostgreSQL database. There should only be one database per node. Not required in `UTILITY` mode.
-* `DB_USER`: the username when connecting to the database. This should not be the database user. Not required in `UTILITY` mode.
+* `DB_USER`: the username when connecting to the database. This should not be the admin user. Not required in `UTILITY` mode.
 * `DB_PASS`: the password for the database user. Not required in `UTILITY` mode.
 * `NODE_ADDRESS`: the url address (host, port, etc.) for accessing the node. Broadcast to the other nodes in the network. Required. This should be a static IP address or url. 
-* `NODE_DONOR`: the url address (host, port, etc.) for accessing another node to populate the blockchain and network pool. If not populated, the node will run in genesis mode. (See Network/Starting up for the first time) Not required in `UTILITY` mode.
+* `BOOT_NODE`: the url address (host, port, etc.) for accessing another node to populate the blockchain and network pool. If not populated, the node will run in genesis mode. (See Network/Starting up for the first time) Not required in `UTILITY` mode.
 * `NODE_MODE`: the mode to run the node in:
   * `PUBLISHER`: a node that has the ability to publish transactions (articles), mint blocks, and broadcast new blocks to the network.
   * `REPLICA`: a node that is a full replica of the network and blockchain. Receives updates from publisher nodes.

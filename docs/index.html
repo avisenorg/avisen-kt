@@ -764,35 +764,35 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="blockchainArticleIdGet" class="">
-                      <a href="#api-Default-blockchainArticleIdGet">blockchainArticleIdGet</a>
+                    <li data-group="Default" data-name="addBlock" class="">
+                      <a href="#api-Default-addBlock">addBlock</a>
                     </li>
-                    <li data-group="Default" data-name="blockchainBlockHashGet" class="">
-                      <a href="#api-Default-blockchainBlockHashGet">blockchainBlockHashGet</a>
+                    <li data-group="Default" data-name="addNode" class="">
+                      <a href="#api-Default-addNode">addNode</a>
                     </li>
-                    <li data-group="Default" data-name="blockchainBlockPost" class="">
-                      <a href="#api-Default-blockchainBlockPost">blockchainBlockPost</a>
+                    <li data-group="Default" data-name="addPublisher" class="">
+                      <a href="#api-Default-addPublisher">addPublisher</a>
                     </li>
-                    <li data-group="Default" data-name="blockchainGet" class="">
-                      <a href="#api-Default-blockchainGet">blockchainGet</a>
+                    <li data-group="Default" data-name="generateKeyPair" class="">
+                      <a href="#api-Default-generateKeyPair">generateKeyPair</a>
                     </li>
-                    <li data-group="Default" data-name="networkGet" class="">
-                      <a href="#api-Default-networkGet">networkGet</a>
+                    <li data-group="Default" data-name="getArticleById" class="">
+                      <a href="#api-Default-getArticleById">getArticleById</a>
                     </li>
-                    <li data-group="Default" data-name="networkNodePost" class="">
-                      <a href="#api-Default-networkNodePost">networkNodePost</a>
+                    <li data-group="Default" data-name="getBlockById" class="">
+                      <a href="#api-Default-getBlockById">getBlockById</a>
                     </li>
-                    <li data-group="Default" data-name="networkNodePublisherPost" class="">
-                      <a href="#api-Default-networkNodePublisherPost">networkNodePublisherPost</a>
+                    <li data-group="Default" data-name="getBlockchain" class="">
+                      <a href="#api-Default-getBlockchain">getBlockchain</a>
                     </li>
-                    <li data-group="Default" data-name="statusGet" class="">
-                      <a href="#api-Default-statusGet">statusGet</a>
+                    <li data-group="Default" data-name="getNodeInfo" class="">
+                      <a href="#api-Default-getNodeInfo">getNodeInfo</a>
                     </li>
-                    <li data-group="Default" data-name="utilCryptoKeyPairGet" class="">
-                      <a href="#api-Default-utilCryptoKeyPairGet">utilCryptoKeyPairGet</a>
+                    <li data-group="Default" data-name="getStatus" class="">
+                      <a href="#api-Default-getStatus">getStatus</a>
                     </li>
-                    <li data-group="Default" data-name="utilCryptoSignGet" class="">
-                      <a href="#api-Default-utilCryptoSignGet">utilCryptoSignGet</a>
+                    <li data-group="Default" data-name="signData" class="">
+                      <a href="#api-Default-signData">signData</a>
                     </li>
           </ul>
         </nav>
@@ -815,600 +815,10 @@
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-blockchainArticleIdGet">
-                      <article id="api-Default-blockchainArticleIdGet-0" data-group="User" data-name="blockchainArticleIdGet" data-version="0">
+                    <div id="api-Default-addBlock">
+                      <article id="api-Default-addBlock-0" data-group="User" data-name="addBlock" data-version="0">
                         <div class="pull-left">
-                          <h1>blockchainArticleIdGet</h1>
-                          <p>Get a specific article</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Searches the entire blockchain for a specific article or an error if it does not exist.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain/article/{id}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-blockchainArticleIdGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainArticleIdGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainArticleIdGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainArticleIdGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-blockchainArticleIdGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"//blockchain/article/{id}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-         id = ; //  | 
-        try {
-            apiInstance.blockchainArticleIdGet(id);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainArticleIdGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-         id = ; //  | 
-        try {
-            apiInstance.blockchainArticleIdGet(id);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainArticleIdGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp"> *id = ; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Get a specific article
-[apiInstance blockchainArticleIdGetWith:id
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
-
-var api = new Avisen.DefaultApi()
-var id = ; // {{}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.blockchainArticleIdGet(id, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class blockchainArticleIdGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var id = new (); //  | 
-
-            try
-            {
-                // Get a specific article
-                apiInstance.blockchainArticleIdGet(id);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.blockchainArticleIdGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$id = ; //  | 
-
-try {
-    $api_instance->blockchainArticleIdGet($id);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->blockchainArticleIdGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $id = ; #  | 
-
-eval { 
-    $api_instance->blockchainArticleIdGet(id => $id);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->blockchainArticleIdGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainArticleIdGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-id =  #  | 
-
-try: 
-    # Get a specific article
-    api_instance.blockchain_article_id_get(id)
-except ApiException as e:
-    print("Exception when calling DefaultApi->blockchainArticleIdGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">id*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_blockchainArticleIdGet_id">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - Ok </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-blockchainArticleIdGet-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-blockchainArticleIdGet-200-schema">
-                                  <div id='responses-blockchainArticleIdGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Ok",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "items" : {
-          "$ref" : "#/components/schemas/Article"
-        },
-        "x-content-type" : "application/json"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-blockchainArticleIdGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-blockchainArticleIdGet-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-blockchainArticleIdGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 404 - Not found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-blockchainBlockHashGet">
-                      <article id="api-Default-blockchainBlockHashGet-0" data-group="User" data-name="blockchainBlockHashGet" data-version="0">
-                        <div class="pull-left">
-                          <h1>blockchainBlockHashGet</h1>
-                          <p>Get a specific block</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Returns a block or an error if it does not exist.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain/block/{hash}</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-blockchainBlockHashGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainBlockHashGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainBlockHashGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockHashGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-blockchainBlockHashGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"//blockchain/block/{hash}"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-         hash = ; //  | 
-        try {
-            apiInstance.blockchainBlockHashGet(hash);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainBlockHashGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-         hash = ; //  | 
-        try {
-            apiInstance.blockchainBlockHashGet(hash);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainBlockHashGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp"> *hash = ; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Get a specific block
-[apiInstance blockchainBlockHashGetWith:hash
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
-
-var api = new Avisen.DefaultApi()
-var hash = ; // {{}} 
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.blockchainBlockHashGet(hash, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class blockchainBlockHashGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var hash = new (); //  | 
-
-            try
-            {
-                // Get a specific block
-                apiInstance.blockchainBlockHashGet(hash);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.blockchainBlockHashGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$hash = ; //  | 
-
-try {
-    $api_instance->blockchainBlockHashGet($hash);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->blockchainBlockHashGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $hash = ; #  | 
-
-eval { 
-    $api_instance->blockchainBlockHashGet(hash => $hash);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->blockchainBlockHashGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainBlockHashGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-hash =  #  | 
-
-try: 
-    # Get a specific block
-    api_instance.blockchain_block_hash_get(hash)
-except ApiException as e:
-    print("Exception when calling DefaultApi->blockchainBlockHashGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-                            <div class="methodsubtabletitle">Path parameters</div>
-                            <table id="methodsubtable">
-                                <tr>
-                                  <th width="150px">Name</th>
-                                  <th>Description</th>
-                                </tr>
-                                  <tr><td style="width:150px;">hash*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_blockchainBlockHashGet_hash">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - Ok </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-blockchainBlockHashGet-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-blockchainBlockHashGet-200-schema">
-                                  <div id='responses-blockchainBlockHashGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Ok",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "items" : {
-          "$ref" : "#/components/schemas/Block"
-        },
-        "x-content-type" : "application/json"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-blockchainBlockHashGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-blockchainBlockHashGet-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-blockchainBlockHashGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 404 - Not found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-blockchainBlockPost">
-                      <article id="api-Default-blockchainBlockPost-0" data-group="User" data-name="blockchainBlockPost" data-version="0">
-                        <div class="pull-left">
-                          <h1>blockchainBlockPost</h1>
+                          <h1>addBlock</h1>
                           <p>Process a specific block</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1422,26 +832,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-blockchainBlockPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainBlockPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainBlockPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainBlockPost-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-addBlock-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-addBlock-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-addBlock-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-addBlock-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-addBlock-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-addBlock-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-blockchainBlockPost-0-curl">
+                          <div class="tab-pane active" id="examples-Default-addBlock-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Content-Type: application/json"\
 "//blockchain/block"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-java">
+                          <div class="tab-pane" id="examples-Default-addBlock-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1457,16 +867,16 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         Block body = ; // Block | 
         try {
-            apiInstance.blockchainBlockPost(body);
+            apiInstance.addBlock(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainBlockPost");
+            System.err.println("Exception when calling DefaultApi#addBlock");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-android">
+                          <div class="tab-pane" id="examples-Default-addBlock-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1475,25 +885,25 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         Block body = ; // Block | 
         try {
-            apiInstance.blockchainBlockPost(body);
+            apiInstance.addBlock(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainBlockPost");
+            System.err.println("Exception when calling DefaultApi#addBlock");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-addBlock-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Block *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Process a specific block
-[apiInstance blockchainBlockPostWith:body
+[apiInstance addBlockWith:body
               completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
@@ -1502,7 +912,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -1515,14 +925,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.blockchainBlockPost(body, callback);
+api.addBlock(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-blockchainBlockPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-addBlock-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1531,7 +941,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class blockchainBlockPostExample
+    public class addBlockExample
     {
         public void main()
         {
@@ -1542,11 +952,11 @@ namespace Example
             try
             {
                 // Process a specific block
-                apiInstance.blockchainBlockPost(body);
+                apiInstance.addBlock(body);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.blockchainBlockPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.addBlock: " + e.Message );
             }
         }
     }
@@ -1554,7 +964,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-php">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1562,14 +972,14 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // Block | 
 
 try {
-    $api_instance->blockchainBlockPost($body);
+    $api_instance->addBlock($body);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->blockchainBlockPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->addBlock: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1578,14 +988,14 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $body = WWW::SwaggerClient::Object::Block->new(); # Block | 
 
 eval { 
-    $api_instance->blockchainBlockPost(body => $body);
+    $api_instance->addBlock(body => $body);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->blockchainBlockPost: $@\n";
+    warn "Exception when calling DefaultApi->addBlock: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-blockchainBlockPost-0-python">
+                            <div class="tab-pane" id="examples-Default-addBlock-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1598,9 +1008,9 @@ body =  # Block |
 
 try: 
     # Process a specific block
-    api_instance.blockchain_block_post(body)
+    api_instance.add_block(body)
 except ApiException as e:
-    print("Exception when calling DefaultApi->blockchainBlockPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->addBlock: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1642,12 +1052,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_blockchainBlockPost_body');
+                                  var result = $('#d2e199_addBlock_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_blockchainBlockPost_body"></div>
+                                <div id="d2e199_addBlock_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -1674,619 +1084,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-blockchainGet">
-                      <article id="api-Default-blockchainGet-0" data-group="User" data-name="blockchainGet" data-version="0">
+                    <div id="api-Default-addNode">
+                      <article id="api-Default-addNode-0" data-group="User" data-name="addNode" data-version="0">
                         <div class="pull-left">
-                          <h1>blockchainGet</h1>
-                          <p>Get the blockchain</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Returns a subset of the blockchain.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-blockchainGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-blockchainGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-blockchainGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-blockchainGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-blockchainGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"//blockchain?page=&size=&sort="</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-blockchainGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-         page = ; //  | 
-         size = ; //  | 
-         sort = ; //  | 
-        try {
-            apiInstance.blockchainGet(page, size, sort);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-blockchainGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-         page = ; //  | 
-         size = ; //  | 
-         sort = ; //  | 
-        try {
-            apiInstance.blockchainGet(page, size, sort);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#blockchainGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-blockchainGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp"> *page = ; // 
- *size = ; //  (optional)
- *sort = ; //  (optional)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Get the blockchain
-[apiInstance blockchainGetWith:page
-    size:size
-    sort:sort
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
-
-var api = new Avisen.DefaultApi()
-var page = ; // {{}} 
-var opts = { 
-  'size': , // {{}} 
-  'sort':  // {{}} 
-};
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.blockchainGet(page, opts, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-blockchainGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class blockchainGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var page = new (); //  | 
-            var size = new (); //  |  (optional) 
-            var sort = new (); //  |  (optional) 
-
-            try
-            {
-                // Get the blockchain
-                apiInstance.blockchainGet(page, size, sort);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.blockchainGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$page = ; //  | 
-$size = ; //  | 
-$sort = ; //  | 
-
-try {
-    $api_instance->blockchainGet($page, $size, $sort);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->blockchainGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $page = ; #  | 
-my $size = ; #  | 
-my $sort = ; #  | 
-
-eval { 
-    $api_instance->blockchainGet(page => $page, size => $size, sort => $sort);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->blockchainGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-blockchainGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-page =  #  | 
-size =  #  |  (optional)
-sort =  #  |  (optional)
-
-try: 
-    # Get the blockchain
-    api_instance.blockchain_get(page, size=size, sort=sort)
-except ApiException as e:
-    print("Exception when calling DefaultApi->blockchainGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">page*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_blockchainGet_page">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    
-                                                </span>
-                                                    <span class="format">
-                                                        (int32)
-                                                    </span>
-                                
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">size</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_blockchainGet_size">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    
-                                                </span>
-                                                    <span class="format">
-                                                        (int32)
-                                                    </span>
-                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">sort</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_blockchainGet_sort">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    
-                                                </span>
-                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - Ok </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-blockchainGet-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-blockchainGet-200-schema">
-                                  <div id='responses-blockchainGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Ok",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "items" : {
-          "$ref" : "#/components/schemas/Block"
-        },
-        "x-content-type" : "application/json"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-blockchainGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-blockchainGet-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-blockchainGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-networkGet">
-                      <article id="api-Default-networkGet-0" data-group="User" data-name="networkGet" data-version="0">
-                        <div class="pull-left">
-                          <h1>networkGet</h1>
-                          <p>Node information</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Returns only the network information of the node.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/network</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-networkGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-networkGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-networkGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-networkGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-networkGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"//network"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-networkGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            Object result = apiInstance.networkGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-networkGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            Object result = apiInstance.networkGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-networkGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-networkGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Node information
-[apiInstance networkGetWithCompletionHandler: 
-              ^(Object output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-networkGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
-
-var api = new Avisen.DefaultApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.networkGet(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-networkGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-networkGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class networkGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-
-            try
-            {
-                // Node information
-                Object result = apiInstance.networkGet();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.networkGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-networkGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-
-try {
-    $result = $api_instance->networkGet();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->networkGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-networkGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-
-eval { 
-    my $result = $api_instance->networkGet();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->networkGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-networkGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-
-try: 
-    # Node information
-    api_response = api_instance.network_get()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->networkGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - Ok </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-networkGet-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-networkGet-200-schema">
-                                  <div id='responses-networkGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Ok",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "properties" : {
-          "peers" : {
-            "items" : {
-              "$ref" : "#/components/schemas/NodeInfo"
-            }
-          }
-        },
-        "x-content-type" : "application/json"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-networkGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-networkGet-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-networkGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-networkNodePost">
-                      <article id="api-Default-networkNodePost-0" data-group="User" data-name="networkNodePost" data-version="0">
-                        <div class="pull-left">
-                          <h1>networkNodePost</h1>
+                          <h1>addNode</h1>
                           <p>Add a node</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2300,26 +1101,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-networkNodePost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkNodePost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-networkNodePost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkNodePost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-networkNodePost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePost-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-addNode-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-addNode-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-addNode-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-addNode-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-addNode-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-addNode-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-networkNodePost-0-curl">
+                          <div class="tab-pane active" id="examples-Default-addNode-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Content-Type: application/json"\
 "//network/node?broadcast="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-networkNodePost-0-java">
+                          <div class="tab-pane" id="examples-Default-addNode-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2336,16 +1137,16 @@ public class DefaultApiExample {
         NodeInfo body = ; // NodeInfo | 
          broadcast = ; //  | 
         try {
-            apiInstance.networkNodePost(body, broadcast);
+            apiInstance.addNode(body, broadcast);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkNodePost");
+            System.err.println("Exception when calling DefaultApi#addNode");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-networkNodePost-0-android">
+                          <div class="tab-pane" id="examples-Default-addNode-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2355,26 +1156,26 @@ public class DefaultApiExample {
         NodeInfo body = ; // NodeInfo | 
          broadcast = ; //  | 
         try {
-            apiInstance.networkNodePost(body, broadcast);
+            apiInstance.addNode(body, broadcast);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkNodePost");
+            System.err.println("Exception when calling DefaultApi#addNode");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-networkNodePost-0-groovy">
+  <div class="tab-pane" id="examples-Default-addNode-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-objc">
+                            <div class="tab-pane" id="examples-Default-addNode-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">NodeInfo *body = ; // 
  *broadcast = ; //  (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Add a node
-[apiInstance networkNodePostWith:body
+[apiInstance addNodeWith:body
     broadcast:broadcast
               completionHandler: ^(NSError* error) {
                             if (error) {
@@ -2384,7 +1185,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-addNode-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -2399,14 +1200,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.networkNodePost(body, opts, callback);
+api.addNode(body, opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-networkNodePost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-addNode-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-addNode-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2415,7 +1216,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class networkNodePostExample
+    public class addNodeExample
     {
         public void main()
         {
@@ -2427,11 +1228,11 @@ namespace Example
             try
             {
                 // Add a node
-                apiInstance.networkNodePost(body, broadcast);
+                apiInstance.addNode(body, broadcast);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.networkNodePost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.addNode: " + e.Message );
             }
         }
     }
@@ -2439,7 +1240,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-php">
+                            <div class="tab-pane" id="examples-Default-addNode-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2448,14 +1249,14 @@ $body = ; // NodeInfo |
 $broadcast = ; //  | 
 
 try {
-    $api_instance->networkNodePost($body, $broadcast);
+    $api_instance->addNode($body, $broadcast);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->networkNodePost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->addNode: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-perl">
+                            <div class="tab-pane" id="examples-Default-addNode-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -2465,14 +1266,14 @@ my $body = WWW::SwaggerClient::Object::NodeInfo->new(); # NodeInfo |
 my $broadcast = ; #  | 
 
 eval { 
-    $api_instance->networkNodePost(body => $body, broadcast => $broadcast);
+    $api_instance->addNode(body => $body, broadcast => $broadcast);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->networkNodePost: $@\n";
+    warn "Exception when calling DefaultApi->addNode: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePost-0-python">
+                            <div class="tab-pane" id="examples-Default-addNode-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2486,9 +1287,9 @@ broadcast =  #  |  (optional)
 
 try: 
     # Add a node
-    api_instance.network_node_post(body, broadcast=broadcast)
+    api_instance.add_node(body, broadcast=broadcast)
 except ApiException as e:
-    print("Exception when calling DefaultApi->networkNodePost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->addNode: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2530,12 +1331,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_networkNodePost_body');
+                                  var result = $('#d2e199_addNode_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_networkNodePost_body"></div>
+                                <div id="d2e199_addNode_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -2551,7 +1352,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_networkNodePost_broadcast">
+                                    <div id="d2e199_addNode_broadcast">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -2577,10 +1378,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-networkNodePublisherPost">
-                      <article id="api-Default-networkNodePublisherPost-0" data-group="User" data-name="networkNodePublisherPost" data-version="0">
+                    <div id="api-Default-addPublisher">
+                      <article id="api-Default-addPublisher-0" data-group="User" data-name="addPublisher" data-version="0">
                         <div class="pull-left">
-                          <h1>networkNodePublisherPost</h1>
+                          <h1>addPublisher</h1>
                           <p>Add a publisher</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2594,26 +1395,26 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-networkNodePublisherPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkNodePublisherPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-networkNodePublisherPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-networkNodePublisherPost-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-addPublisher-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-addPublisher-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-addPublisher-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-addPublisher-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-addPublisher-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-addPublisher-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-networkNodePublisherPost-0-curl">
+                          <div class="tab-pane active" id="examples-Default-addPublisher-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "Content-Type: application/json"\
 "//network/node/publisher"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-java">
+                          <div class="tab-pane" id="examples-Default-addPublisher-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2629,16 +1430,16 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         Publisher body = ; // Publisher | 
         try {
-            apiInstance.networkNodePublisherPost(body);
+            apiInstance.addPublisher(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkNodePublisherPost");
+            System.err.println("Exception when calling DefaultApi#addPublisher");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-android">
+                          <div class="tab-pane" id="examples-Default-addPublisher-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2647,25 +1448,25 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         Publisher body = ; // Publisher | 
         try {
-            apiInstance.networkNodePublisherPost(body);
+            apiInstance.addPublisher(body);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#networkNodePublisherPost");
+            System.err.println("Exception when calling DefaultApi#addPublisher");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-addPublisher-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Publisher *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Add a publisher
-[apiInstance networkNodePublisherPostWith:body
+[apiInstance addPublisherWith:body
               completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
@@ -2674,7 +1475,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -2687,14 +1488,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.networkNodePublisherPost(body, callback);
+api.addPublisher(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-addPublisher-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2703,7 +1504,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class networkNodePublisherPostExample
+    public class addPublisherExample
     {
         public void main()
         {
@@ -2714,11 +1515,11 @@ namespace Example
             try
             {
                 // Add a publisher
-                apiInstance.networkNodePublisherPost(body);
+                apiInstance.addPublisher(body);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.networkNodePublisherPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.addPublisher: " + e.Message );
             }
         }
     }
@@ -2726,7 +1527,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-php">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2734,14 +1535,14 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // Publisher | 
 
 try {
-    $api_instance->networkNodePublisherPost($body);
+    $api_instance->addPublisher($body);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->networkNodePublisherPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->addPublisher: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -2750,14 +1551,14 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $body = WWW::SwaggerClient::Object::Publisher->new(); # Publisher | 
 
 eval { 
-    $api_instance->networkNodePublisherPost(body => $body);
+    $api_instance->addPublisher(body => $body);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->networkNodePublisherPost: $@\n";
+    warn "Exception when calling DefaultApi->addPublisher: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-networkNodePublisherPost-0-python">
+                            <div class="tab-pane" id="examples-Default-addPublisher-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -2770,9 +1571,9 @@ body =  # Publisher |
 
 try: 
     # Add a publisher
-    api_instance.network_node_publisher_post(body)
+    api_instance.add_publisher(body)
 except ApiException as e:
-    print("Exception when calling DefaultApi->networkNodePublisherPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->addPublisher: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2814,12 +1615,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_networkNodePublisherPost_body');
+                                  var result = $('#d2e199_addPublisher_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_networkNodePublisherPost_body"></div>
+                                <div id="d2e199_addPublisher_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -2838,43 +1639,43 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-statusGet">
-                      <article id="api-Default-statusGet-0" data-group="User" data-name="statusGet" data-version="0">
+                    <div id="api-Default-generateKeyPair">
+                      <article id="api-Default-generateKeyPair-0" data-group="User" data-name="generateKeyPair" data-version="0">
                         <div class="pull-left">
-                          <h1>statusGet</h1>
-                          <p>Returns info about this node.</p>
+                          <h1>generateKeyPair</h1>
+                          <p>Generates a key pair</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns info about this node, including health.</p>
+                        <p class="marked">Generates an ECDSA key pair. Is not sent to the network peers or saved in the database.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/status</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/util/crypto/key-pair</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-statusGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-statusGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-statusGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-statusGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-statusGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-statusGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-generateKeyPair-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-generateKeyPair-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-generateKeyPair-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-generateKeyPair-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-statusGet-0-curl">
+                          <div class="tab-pane active" id="examples-Default-generateKeyPair-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"//status"</code></pre>
+"//util/crypto/key-pair"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-statusGet-0-java">
+                          <div class="tab-pane" id="examples-Default-generateKeyPair-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -2889,17 +1690,17 @@ public class DefaultApiExample {
         
         DefaultApi apiInstance = new DefaultApi();
         try {
-            Object result = apiInstance.statusGet();
+            KeyPairString result = apiInstance.generateKeyPair();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#statusGet");
+            System.err.println("Exception when calling DefaultApi#generateKeyPair");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-statusGet-0-android">
+                          <div class="tab-pane" id="examples-Default-generateKeyPair-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2907,25 +1708,1217 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            Object result = apiInstance.statusGet();
+            KeyPairString result = apiInstance.generateKeyPair();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#statusGet");
+            System.err.println("Exception when calling DefaultApi#generateKeyPair");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-statusGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-generateKeyPair-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-statusGet-0-objc">
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Returns info about this node.
-[apiInstance statusGetWithCompletionHandler: 
+// Generates a key pair
+[apiInstance generateKeyPairWithCompletionHandler: 
+              ^(KeyPairString output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
+
+var api = new Avisen.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.generateKeyPair(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-generateKeyPair-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class generateKeyPairExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                // Generates a key pair
+                KeyPairString result = apiInstance.generateKeyPair();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.generateKeyPair: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $result = $api_instance->generateKeyPair();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->generateKeyPair: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    my $result = $api_instance->generateKeyPair();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->generateKeyPair: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-generateKeyPair-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    # Generates a key pair
+    api_response = api_instance.generate_key_pair()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->generateKeyPair: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - Created </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-generateKeyPair-201-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-generateKeyPair-201-schema">
+                                  <div id='responses-generateKeyPair-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Created",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/KeyPairString"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-generateKeyPair-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-generateKeyPair-201-schema-201');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-generateKeyPair-201-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-getArticleById">
+                      <article id="api-Default-getArticleById-0" data-group="User" data-name="getArticleById" data-version="0">
+                        <div class="pull-left">
+                          <h1>getArticleById</h1>
+                          <p>Get a specific article</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Searches the entire blockchain for a specific article or an error if it does not exist.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain/article/{id}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-getArticleById-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-getArticleById-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-getArticleById-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-getArticleById-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-getArticleById-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-getArticleById-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-getArticleById-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//blockchain/article/{id}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-getArticleById-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+         id = ; //  | 
+        try {
+            apiInstance.getArticleById(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getArticleById");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-getArticleById-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+         id = ; //  | 
+        try {
+            apiInstance.getArticleById(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getArticleById");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-getArticleById-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp"> *id = ; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get a specific article
+[apiInstance getArticleByIdWith:id
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
+
+var api = new Avisen.DefaultApi()
+var id = ; // {{}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.getArticleById(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-getArticleById-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getArticleByIdExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var id = new (); //  | 
+
+            try
+            {
+                // Get a specific article
+                apiInstance.getArticleById(id);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getArticleById: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$id = ; //  | 
+
+try {
+    $api_instance->getArticleById($id);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getArticleById: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $id = ; #  | 
+
+eval { 
+    $api_instance->getArticleById(id => $id);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->getArticleById: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getArticleById-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+id =  #  | 
+
+try: 
+    # Get a specific article
+    api_instance.get_article_by_id(id)
+except ApiException as e:
+    print("Exception when calling DefaultApi->getArticleById: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_getArticleById_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Ok </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getArticleById-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getArticleById-200-schema">
+                                  <div id='responses-getArticleById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Ok",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "items" : {
+          "$ref" : "#/components/schemas/Article"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getArticleById-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getArticleById-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getArticleById-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - Not found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-getBlockById">
+                      <article id="api-Default-getBlockById-0" data-group="User" data-name="getBlockById" data-version="0">
+                        <div class="pull-left">
+                          <h1>getBlockById</h1>
+                          <p>Get a specific block</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns a block or an error if it does not exist.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain/block/{hash}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-getBlockById-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-getBlockById-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-getBlockById-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-getBlockById-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-getBlockById-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-getBlockById-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-getBlockById-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//blockchain/block/{hash}"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-getBlockById-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+         hash = ; //  | 
+        try {
+            apiInstance.getBlockById(hash);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getBlockById");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-getBlockById-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+         hash = ; //  | 
+        try {
+            apiInstance.getBlockById(hash);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getBlockById");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-getBlockById-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp"> *hash = ; // 
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get a specific block
+[apiInstance getBlockByIdWith:hash
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
+
+var api = new Avisen.DefaultApi()
+var hash = ; // {{}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.getBlockById(hash, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-getBlockById-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getBlockByIdExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var hash = new (); //  | 
+
+            try
+            {
+                // Get a specific block
+                apiInstance.getBlockById(hash);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getBlockById: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$hash = ; //  | 
+
+try {
+    $api_instance->getBlockById($hash);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getBlockById: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $hash = ; #  | 
+
+eval { 
+    $api_instance->getBlockById(hash => $hash);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->getBlockById: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockById-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+hash =  #  | 
+
+try: 
+    # Get a specific block
+    api_instance.get_block_by_id(hash)
+except ApiException as e:
+    print("Exception when calling DefaultApi->getBlockById: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">hash*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_getBlockById_hash">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Ok </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getBlockById-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getBlockById-200-schema">
+                                  <div id='responses-getBlockById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Ok",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "items" : {
+          "$ref" : "#/components/schemas/Block"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getBlockById-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getBlockById-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getBlockById-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - Not found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-getBlockchain">
+                      <article id="api-Default-getBlockchain-0" data-group="User" data-name="getBlockchain" data-version="0">
+                        <div class="pull-left">
+                          <h1>getBlockchain</h1>
+                          <p>Get the blockchain</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns a subset of the blockchain.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/blockchain</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-getBlockchain-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-getBlockchain-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-getBlockchain-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-getBlockchain-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-getBlockchain-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-getBlockchain-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-getBlockchain-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//blockchain?page=&size=&sort="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-getBlockchain-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+         page = ; //  | 
+         size = ; //  | 
+         sort = ; //  | 
+        try {
+            apiInstance.getBlockchain(page, size, sort);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getBlockchain");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-getBlockchain-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+         page = ; //  | 
+         size = ; //  | 
+         sort = ; //  | 
+        try {
+            apiInstance.getBlockchain(page, size, sort);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getBlockchain");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-getBlockchain-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp"> *page = ; // 
+ *size = ; //  (optional)
+ *sort = ; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get the blockchain
+[apiInstance getBlockchainWith:page
+    size:size
+    sort:sort
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
+
+var api = new Avisen.DefaultApi()
+var page = ; // {{}} 
+var opts = { 
+  'size': , // {{}} 
+  'sort':  // {{}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.getBlockchain(page, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-getBlockchain-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getBlockchainExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var page = new (); //  | 
+            var size = new (); //  |  (optional) 
+            var sort = new (); //  |  (optional) 
+
+            try
+            {
+                // Get the blockchain
+                apiInstance.getBlockchain(page, size, sort);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getBlockchain: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$page = ; //  | 
+$size = ; //  | 
+$sort = ; //  | 
+
+try {
+    $api_instance->getBlockchain($page, $size, $sort);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getBlockchain: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $page = ; #  | 
+my $size = ; #  | 
+my $sort = ; #  | 
+
+eval { 
+    $api_instance->getBlockchain(page => $page, size => $size, sort => $sort);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->getBlockchain: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getBlockchain-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+page =  #  | 
+size =  #  |  (optional)
+sort =  #  |  (optional)
+
+try: 
+    # Get the blockchain
+    api_instance.get_blockchain(page, size=size, sort=sort)
+except ApiException as e:
+    print("Exception when calling DefaultApi->getBlockchain: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">page*</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getBlockchain_page">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    
+                                                </span>
+                                                    <span class="format">
+                                                        (int32)
+                                                    </span>
+                                
+                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">size</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getBlockchain_size">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    
+                                                </span>
+                                                    <span class="format">
+                                                        (int32)
+                                                    </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">sort</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getBlockchain_sort">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Ok </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getBlockchain-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getBlockchain-200-schema">
+                                  <div id='responses-getBlockchain-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Ok",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "items" : {
+          "$ref" : "#/components/schemas/Block"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getBlockchain-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getBlockchain-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getBlockchain-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-getNodeInfo">
+                      <article id="api-Default-getNodeInfo-0" data-group="User" data-name="getNodeInfo" data-version="0">
+                        <div class="pull-left">
+                          <h1>getNodeInfo</h1>
+                          <p>Node information</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns only the network information of the node.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/network</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-getNodeInfo-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-getNodeInfo-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-getNodeInfo-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-getNodeInfo-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-getNodeInfo-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//network"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-getNodeInfo-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Object result = apiInstance.getNodeInfo();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getNodeInfo");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-getNodeInfo-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Object result = apiInstance.getNodeInfo();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getNodeInfo");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-getNodeInfo-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Node information
+[apiInstance getNodeInfoWithCompletionHandler: 
               ^(Object output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2937,7 +2930,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-statusGet-0-javascript">
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -2948,14 +2941,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.statusGet(callback);
+api.getNodeInfo(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-statusGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-getNodeInfo-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-statusGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -2964,7 +2957,272 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class statusGetExample
+    public class getNodeInfoExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                // Node information
+                Object result = apiInstance.getNodeInfo();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.getNodeInfo: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $result = $api_instance->getNodeInfo();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->getNodeInfo: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    my $result = $api_instance->getNodeInfo();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->getNodeInfo: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getNodeInfo-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    # Node information
+    api_response = api_instance.get_node_info()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->getNodeInfo: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Ok </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getNodeInfo-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getNodeInfo-200-schema">
+                                  <div id='responses-getNodeInfo-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Ok",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "properties" : {
+          "peers" : {
+            "items" : {
+              "$ref" : "#/components/schemas/NodeInfo"
+            }
+          }
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getNodeInfo-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getNodeInfo-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getNodeInfo-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-getStatus">
+                      <article id="api-Default-getStatus-0" data-group="User" data-name="getStatus" data-version="0">
+                        <div class="pull-left">
+                          <h1>getStatus</h1>
+                          <p>Returns info about this node.</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Returns info about this node, including health.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/status</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-getStatus-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-getStatus-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-getStatus-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-getStatus-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-getStatus-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-getStatus-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-getStatus-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"//status"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-getStatus-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Object result = apiInstance.getStatus();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getStatus");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-getStatus-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Object result = apiInstance.getStatus();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getStatus");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-getStatus-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-getStatus-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Returns info about this node.
+[apiInstance getStatusWithCompletionHandler: 
+              ^(Object output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-getStatus-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
+
+var api = new Avisen.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getStatus(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-getStatus-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-getStatus-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getStatusExample
     {
         public void main()
         {
@@ -2974,12 +3232,12 @@ namespace Example
             try
             {
                 // Returns info about this node.
-                Object result = apiInstance.statusGet();
+                Object result = apiInstance.getStatus();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.statusGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.getStatus: " + e.Message );
             }
         }
     }
@@ -2987,22 +3245,22 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-statusGet-0-php">
+                            <div class="tab-pane" id="examples-Default-getStatus-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
 try {
-    $result = $api_instance->statusGet();
+    $result = $api_instance->getStatus();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->statusGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->getStatus: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-statusGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-getStatus-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -3010,15 +3268,15 @@ use WWW::SwaggerClient::DefaultApi;
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 
 eval { 
-    my $result = $api_instance->statusGet();
+    my $result = $api_instance->getStatus();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->statusGet: $@\n";
+    warn "Exception when calling DefaultApi->getStatus: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-statusGet-0-python">
+                            <div class="tab-pane" id="examples-Default-getStatus-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3030,10 +3288,10 @@ api_instance = swagger_client.DefaultApi()
 
 try: 
     # Returns info about this node.
-    api_response = api_instance.status_get()
+    api_response = api_instance.get_status()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->statusGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->getStatus: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3049,14 +3307,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-statusGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getStatus-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-statusGet-200-schema">
-                                  <div id='responses-statusGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getStatus-200-schema">
+                                  <div id='responses-getStatus-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3087,282 +3345,24 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-statusGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-statusGet-200-schema-200');
+                                        $('#responses-getStatus-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getStatus-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-statusGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getStatus-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-utilCryptoKeyPairGet">
-                      <article id="api-Default-utilCryptoKeyPairGet-0" data-group="User" data-name="utilCryptoKeyPairGet" data-version="0">
+                    <div id="api-Default-signData">
+                      <article id="api-Default-signData-0" data-group="User" data-name="signData" data-version="0">
                         <div class="pull-left">
-                          <h1>utilCryptoKeyPairGet</h1>
-                          <p>Generates a key pair</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Generates an ECDSA key pair. Is not sent to the network peers or saved in the database.</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/util/crypto/key-pair</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-utilCryptoKeyPairGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-utilCryptoKeyPairGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"//util/crypto/key-pair"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            KeyPairString result = apiInstance.utilCryptoKeyPairGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            KeyPairString result = apiInstance.utilCryptoKeyPairGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Generates a key pair
-[apiInstance utilCryptoKeyPairGetWithCompletionHandler: 
-              ^(KeyPairString output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
-
-var api = new Avisen.DefaultApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.utilCryptoKeyPairGet(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class utilCryptoKeyPairGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-
-            try
-            {
-                // Generates a key pair
-                KeyPairString result = apiInstance.utilCryptoKeyPairGet();
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.utilCryptoKeyPairGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-
-try {
-    $result = $api_instance->utilCryptoKeyPairGet();
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->utilCryptoKeyPairGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-
-eval { 
-    my $result = $api_instance->utilCryptoKeyPairGet();
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->utilCryptoKeyPairGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-
-try: 
-    # Generates a key pair
-    api_response = api_instance.util_crypto_key_pair_get()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->utilCryptoKeyPairGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 201 - Created </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-utilCryptoKeyPairGet-201-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-utilCryptoKeyPairGet-201-schema">
-                                  <div id='responses-utilCryptoKeyPairGet-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Created",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/KeyPairString"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-utilCryptoKeyPairGet-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-utilCryptoKeyPairGet-201-schema-201');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-utilCryptoKeyPairGet-201-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-utilCryptoSignGet">
-                      <article id="api-Default-utilCryptoSignGet-0" data-group="User" data-name="utilCryptoSignGet" data-version="0">
-                        <div class="pull-left">
-                          <h1>utilCryptoSignGet</h1>
+                          <h1>signData</h1>
                           <p>Signs data</p>
                         </div>
                         <div class="pull-right"></div>
@@ -3376,27 +3376,27 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-utilCryptoSignGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoSignGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoSignGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-signData-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-signData-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-signData-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-signData-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-signData-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-signData-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-utilCryptoSignGet-0-curl">
+                          <div class="tab-pane active" id="examples-Default-signData-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
 "//util/crypto/sign"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-java">
+                          <div class="tab-pane" id="examples-Default-signData-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -3412,17 +3412,17 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SigningPayload body = ; // SigningPayload | 
         try {
-            Signature result = apiInstance.utilCryptoSignGet(body);
+            Signature result = apiInstance.signData(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoSignGet");
+            System.err.println("Exception when calling DefaultApi#signData");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-android">
+                          <div class="tab-pane" id="examples-Default-signData-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -3431,26 +3431,26 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SigningPayload body = ; // SigningPayload | 
         try {
-            Signature result = apiInstance.utilCryptoSignGet(body);
+            Signature result = apiInstance.signData(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoSignGet");
+            System.err.println("Exception when calling DefaultApi#signData");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-signData-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-objc">
+                            <div class="tab-pane" id="examples-Default-signData-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">SigningPayload *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Signs data
-[apiInstance utilCryptoSignGetWith:body
+[apiInstance signDataWith:body
               completionHandler: ^(Signature output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3462,7 +3462,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-javascript">
+                            <div class="tab-pane" id="examples-Default-signData-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -3475,14 +3475,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.utilCryptoSignGet(body, callback);
+api.signData(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-signData-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-signData-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -3491,7 +3491,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class utilCryptoSignGetExample
+    public class signDataExample
     {
         public void main()
         {
@@ -3502,12 +3502,12 @@ namespace Example
             try
             {
                 // Signs data
-                Signature result = apiInstance.utilCryptoSignGet(body);
+                Signature result = apiInstance.signData(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.utilCryptoSignGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.signData: " + e.Message );
             }
         }
     }
@@ -3515,7 +3515,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-php">
+                            <div class="tab-pane" id="examples-Default-signData-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3523,15 +3523,15 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // SigningPayload | 
 
 try {
-    $result = $api_instance->utilCryptoSignGet($body);
+    $result = $api_instance->signData($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->utilCryptoSignGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->signData: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-signData-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -3540,15 +3540,15 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $body = WWW::SwaggerClient::Object::SigningPayload->new(); # SigningPayload | 
 
 eval { 
-    my $result = $api_instance->utilCryptoSignGet(body => $body);
+    my $result = $api_instance->signData(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->utilCryptoSignGet: $@\n";
+    warn "Exception when calling DefaultApi->signData: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-python">
+                            <div class="tab-pane" id="examples-Default-signData-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3561,10 +3561,10 @@ body =  # SigningPayload |
 
 try: 
     # Signs data
-    api_response = api_instance.util_crypto_sign_get(body)
+    api_response = api_instance.sign_data(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->utilCryptoSignGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->signData: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3606,12 +3606,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_utilCryptoSignGet_body');
+                                  var result = $('#d2e199_signData_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_utilCryptoSignGet_body"></div>
+                                <div id="d2e199_signData_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -3623,14 +3623,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-utilCryptoSignGet-201-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-signData-201-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-utilCryptoSignGet-201-schema">
-                                  <div id='responses-utilCryptoSignGet-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-signData-201-schema">
+                                  <div id='responses-signData-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3656,14 +3656,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-utilCryptoSignGet-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-utilCryptoSignGet-201-schema-201');
+                                        $('#responses-signData-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-signData-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-utilCryptoSignGet-201-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-signData-201-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
