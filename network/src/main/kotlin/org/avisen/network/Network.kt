@@ -55,6 +55,7 @@ data class NodeInfo(
 @Serializable
 data class Publisher(
     val publicKey: String,
+    val signature: String,
 )
 
 @Serializable

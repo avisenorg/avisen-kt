@@ -273,3 +273,5 @@ components:
       properties:
         publicKey:
           type: string
+        signature:
+          type: string

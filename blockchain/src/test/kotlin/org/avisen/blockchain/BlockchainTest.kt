@@ -151,6 +151,42 @@ class BlockchainTest : DescribeSpec({
             }
         }
 
+        describe("acceptPublisher") {
+            it("should add verified publisher to unprocessedPublishers") {
+                val storage = mockk<Storage>()
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
+
+                val keysToAdd = generateKeyPair().shouldNotBeNull()
+                val publicKey = keysToAdd.second.getString()
+                val signature = sign(keysToAdd.first, publicKey)
+
+                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe true
+            }
+
+            it("should not accept publisher with invalid signature") {
+                val storage = mockk<Storage>()
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
+
+                val keysToAdd = generateKeyPair().shouldNotBeNull()
+                val publicKey = keysToAdd.second.getString()
+                val signature = sign(keysToAdd.first, "invalid")
+
+                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe false
+            }
+
+            it("should not add duplicate publisher") {
+                val keysToAdd = generateKeyPair().shouldNotBeNull()
+                val publicKey = keysToAdd.second.getString()
+
+                val storage = mockk<Storage>()
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey), unprocessedPublishers = mutableSetOf(publicKey))
+
+                val signature = sign(keysToAdd.first, publicKey)
+
+                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe false
+            }
+        }
+
         describe("processBlock") {
             it("should accept block with valid height and matching previousHash") {
                 val genesisBlock = Block.genesis(publisherPublicKey, publisherSigningKey)
