@@ -74,7 +74,7 @@ fun Application.module() {
 
     val HeaderValidatorPlugin = createApplicationPlugin("HeaderValidatorPlugin") {
         on(CallSetup) { call ->
-            if (!(call.request.uri.contains("status") || call.request.uri.contains("util"))) {
+            if (!(call.request.uri.contains("status") || call.request.uri.contains("util") || call.request.uri.contains("docs"))) {
                 if (!call.request.headers.contains("X-Network-ID")) {
                     call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Required X-Network-ID is missing"))
                     return@on
@@ -345,7 +345,7 @@ fun Application.module() {
             call.respondText("Hello World!")
         }
 
-        openAPI(path="api", swaggerFile = "openapi/documentation.yml")
+        openAPI(path="docs/api", swaggerFile = "openapi/documentation.yml")
 
         get("/status") {
             call.respond(Info(networkId, nodeInfo))
