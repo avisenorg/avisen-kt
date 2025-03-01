@@ -111,8 +111,8 @@ data class Network(
         }
     }
 
-    suspend fun downloadPeers(donorNode: String) {
-        client.downloadPeers(donorNode).forEach {
+    suspend fun downloadPeers(fromAddress: String) {
+        client.downloadPeers(fromAddress).forEach {
             peers.add(Node(it.address, it.type))
         }
     }
@@ -216,7 +216,7 @@ class NetworkWebClient(private val networkId: String): NetworkClient {
         }
     }
 
-    // TODO since we have a list of nodes, we should be able to pick back up from another node if this donor goes down
+    // TODO since we have a list of nodes, we should be able to pick back up from another node if this bootnode goes down
     private suspend fun downloadBlocks(address: String, page: Int): List<Block> {
         val response = client.get("$address/blockchain?page=$page&size=10")
         if (response.status != HttpStatusCode.OK) {

@@ -39,7 +39,6 @@ import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.avisen.network.Publisher
-import java.util.UUID
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -49,12 +48,12 @@ fun Application.module() {
      *
      * Optional variables use propertyOrNull() while required properties use property()
      */
-    val selfAddress = environment.config.property("ktor.node.address").getString()
-    val donorNode = environment.config.propertyOrNull("ktor.node.donor")?.getString()
-    val nodeMode = environment.config.property("ktor.node.mode").getString()
-    val networkId = environment.config.property("ktor.node.networkId").getString()
-    val publisherSigningKey = environment.config.propertyOrNull("ktor.node.publisher.signingKey")?.getString()
-    val publisherPublicKey = environment.config.propertyOrNull("ktor.node.publisher.publicKey")?.getString()
+    val selfAddress = environment.config.property("node.address").getString()
+    val bootNode = environment.config.propertyOrNull("node.bootNode")?.getString()
+    val nodeMode = environment.config.property("node.mode").getString()
+    val networkId = environment.config.property("node.networkId").getString()
+    val publisherSigningKey = environment.config.propertyOrNull("node.publisher.signingKey")?.getString()
+    val publisherPublicKey = environment.config.propertyOrNull("node.publisher.publicKey")?.getString()
 
     // When running locally with docker, sometimes the application can beat the database when starting
     if (networkId == "local") {
@@ -110,23 +109,23 @@ fun Application.module() {
             throw RuntimeException("A Publisher Public Key is required when starting a node in PUBLISHER mode.")
         }
 
-        if (nodeInfo.type == NodeType.REPLICA && donorNode == null) {
-            throw RuntimeException("A Donor is required when starting a node in REPLICA mode.")
+        if (nodeInfo.type == NodeType.REPLICA && bootNode == null) {
+            throw RuntimeException("A boot node is required when starting a node in REPLICA mode.")
         }
 
         val blockchain = Blockchain(storage(), Pair(publisherSigningKey ?: "", publisherPublicKey ?: ""))
-        // If a donor node has been specified,
+        // If a boot node has been specified,
         // get the blockchain, transactions, and network from it
-        if (donorNode != null) {
+        if (bootNode != null) {
             environment.log.info("Starting with network id: $networkId")
 
-            environment.log.info("Donor node address found. Starting donor process.")
+            environment.log.info("Boot node address found. Starting boot process.")
 
-            environment.log.info("Starting download of network peers from donor...")
-            runBlocking { network.downloadPeers(donorNode) }
+            environment.log.info("Starting download of network peers from boot node...")
+            runBlocking { network.downloadPeers(bootNode) }
 
-            // Also get the donor node's info
-            runBlocking { network.downloadPeerInfo(donorNode) }
+            // Also get the boot node's info
+            runBlocking { network.downloadPeerInfo(bootNode) }
 
             environment.log.info("Done downloading peers.")
 
@@ -134,30 +133,30 @@ fun Application.module() {
                 environment.log.info("Downloading full blockchain...")
                 var page = 0
 
-                var newBlocks = runBlocking { network.downloadBlocks(donorNode, page, null).toMutableList() }
+                var newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
                 while(newBlocks.isNotEmpty()) {
                     newBlocks.forEach { blockchain.processBlock(it) }
                     page++
-                    newBlocks = runBlocking { network.downloadBlocks(donorNode, page, null).toMutableList() }
+                    newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
                 }
-                environment.log.info("Full blockchain downloaded from donor.")
+                environment.log.info("Full blockchain downloaded from boot node.")
             } else {
                 environment.log.info("Blockchain already downloaded.")
                 environment.log.info("Checking for missing blocks...")
-                val latestBlockFromDonor = runBlocking { network.getLatestBlock(donorNode) }
+                val latestBlockFromBootNode = runBlocking { network.getLatestBlock(bootNode) }
 
-                if (latestBlockFromDonor != null) {
+                if (latestBlockFromBootNode != null) {
                     val latestBlockInChain = blockchain.chain(0, 1, "DESC", null).singleOrNull()
 
-                    if (latestBlockFromDonor.height > latestBlockInChain!!.height) {
+                    if (latestBlockFromBootNode.height > latestBlockInChain!!.height) {
                         environment.log.info("Out-of-date blockchain detected. Downloading latest blocks...")
                         var page = 0
 
-                        var newBlocks = runBlocking { network.downloadBlocks(donorNode, page, null).toMutableList() }
+                        var newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
                         while(newBlocks.isNotEmpty()) {
                             newBlocks.forEach { blockchain.processBlock(it) }
                             page++
-                            newBlocks = runBlocking { network.downloadBlocks(donorNode, page, null).toMutableList() }
+                            newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
                         }
                     } else {
                         environment.log.info("Blockchain up-to-date.")
@@ -167,15 +166,16 @@ fun Application.module() {
             }
 
             environment.log.info("Adding self to the network...")
-            // Update the donor node with the new peer
-            runBlocking { network.updatePeer(donorNode, nodeInfo.toNode()) }
+            // Update the boot node with the new peer
+            runBlocking { network.updatePeer(bootNode, nodeInfo.toNode()) }
         } else {
+            environment.log.info("No boot node address found.")
             if (blockchain.chain(0, null, null, null).isEmpty()) {
-                environment.log.info("No donor node address found. Beginning genesis...")
+                environment.log.info("Beginning genesis...")
 
                 blockchain.processBlock(Block.genesis(publisherPublicKey!!, publisherSigningKey!!))
             } else {
-                environment.log.info("No donor node address found. Blockchain already detected.")
+                environment.log.info("Blockchain already detected.")
             }
         }
 
@@ -390,9 +390,9 @@ fun Application.module() {
 }
 
 fun Application.storage(): Db {
-    val url = environment.config.property("ktor.db.url").getString()
-    val username = environment.config.property("ktor.db.user").getString()
-    val password = environment.config.property("ktor.db.pass").getString()
+    val url = environment.config.property("db.url").getString()
+    val username = environment.config.property("db.user").getString()
+    val password = environment.config.property("db.pass").getString()
 
     return Db.init(url, username, password)
 }
