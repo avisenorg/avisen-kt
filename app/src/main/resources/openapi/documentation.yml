@@ -179,7 +179,7 @@ paths:
                 $ref: '#/components/schemas/KeyPairString'
 
   /util/crypto/sign:
-    post:
+    get:
       summary: Signs data
       description: Signs data with the given private key and returns the signature
       requestBody:

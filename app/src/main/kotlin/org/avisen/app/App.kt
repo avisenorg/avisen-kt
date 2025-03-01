@@ -367,7 +367,7 @@ fun Application.module() {
                 }
 
                 route("sign") {
-                    post {
+                    get {
                         val signingPayload = call.receive<SigningPayload>()
 
                         val privateKey = signingPayload.privateKey.toPrivateKey()
