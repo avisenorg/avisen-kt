@@ -208,13 +208,20 @@ fun Application.module() {
                         call.response.status(HttpStatusCode.Created)
                     }
 
-                    route("/publisher") {
-                        post {
-                            val newPublisher = call.receive<Publisher>()
+                    // Only publishers can add publishers to the network
+                    if (nodeInfo.type == NodeType.PUBLISHER) {
+                        route("/publisher") {
+                            post {
+                                val newPublisher = call.receive<Publisher>()
 
-                            blockchain.acceptPublisher(newPublisher.publicKey)
+                                val result = blockchain.acceptPublisher(newPublisher.publicKey, newPublisher.signature)
 
-                            call.response.status(HttpStatusCode.OK)
+                                if (result) {
+                                   call.response.status(HttpStatusCode.OK)
+                                } else {
+                                    call.response.status(HttpStatusCode.BadRequest)
+                                }
+                            }
                         }
                     }
                 }
@@ -367,7 +374,7 @@ fun Application.module() {
                 }
 
                 route("sign") {
-                    post {
+                    get {
                         val signingPayload = call.receive<SigningPayload>()
 
                         val privateKey = signingPayload.privateKey.toPrivateKey()

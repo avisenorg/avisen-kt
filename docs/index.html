@@ -732,7 +732,8 @@
 };
             defs["Publisher"] = {
   "properties" : {
-    "publicKey" : { }
+    "publicKey" : { },
+    "signature" : { }
   }
 };
             defs["Signature"] = {
@@ -787,11 +788,11 @@
                     <li data-group="Default" data-name="statusGet" class="">
                       <a href="#api-Default-statusGet">statusGet</a>
                     </li>
-                    <li data-group="Default" data-name="utilCryptoKeyPairPost" class="">
-                      <a href="#api-Default-utilCryptoKeyPairPost">utilCryptoKeyPairPost</a>
+                    <li data-group="Default" data-name="utilCryptoKeyPairGet" class="">
+                      <a href="#api-Default-utilCryptoKeyPairGet">utilCryptoKeyPairGet</a>
                     </li>
-                    <li data-group="Default" data-name="utilCryptoSignPost" class="">
-                      <a href="#api-Default-utilCryptoSignPost">utilCryptoSignPost</a>
+                    <li data-group="Default" data-name="utilCryptoSignGet" class="">
+                      <a href="#api-Default-utilCryptoSignGet">utilCryptoSignGet</a>
                     </li>
           </ul>
         </nav>
@@ -3100,10 +3101,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-utilCryptoKeyPairPost">
-                      <article id="api-Default-utilCryptoKeyPairPost-0" data-group="User" data-name="utilCryptoKeyPairPost" data-version="0">
+                    <div id="api-Default-utilCryptoKeyPairGet">
+                      <article id="api-Default-utilCryptoKeyPairGet-0" data-group="User" data-name="utilCryptoKeyPairGet" data-version="0">
                         <div class="pull-left">
-                          <h1>utilCryptoKeyPairPost</h1>
+                          <h1>utilCryptoKeyPairGet</h1>
                           <p>Generates a key pair</p>
                         </div>
                         <div class="pull-right"></div>
@@ -3112,31 +3113,31 @@ except ApiException as e:
                         <p class="marked">Generates an ECDSA key pair. Is not sent to the network peers or saved in the database.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/util/crypto/key-pair</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/util/crypto/key-pair</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-utilCryptoKeyPairPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoKeyPairPost-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-utilCryptoKeyPairGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoKeyPairGet-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-utilCryptoKeyPairPost-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+                          <div class="tab-pane active" id="examples-Default-utilCryptoKeyPairGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
 "//util/crypto/key-pair"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-java">
+                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -3151,17 +3152,17 @@ public class DefaultApiExample {
         
         DefaultApi apiInstance = new DefaultApi();
         try {
-            KeyPairString result = apiInstance.utilCryptoKeyPairPost();
+            KeyPairString result = apiInstance.utilCryptoKeyPairGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairPost");
+            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-android">
+                          <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -3169,25 +3170,25 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            KeyPairString result = apiInstance.utilCryptoKeyPairPost();
+            KeyPairString result = apiInstance.utilCryptoKeyPairGet();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairPost");
+            System.err.println("Exception when calling DefaultApi#utilCryptoKeyPairGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Generates a key pair
-[apiInstance utilCryptoKeyPairPostWithCompletionHandler: 
+[apiInstance utilCryptoKeyPairGetWithCompletionHandler: 
               ^(KeyPairString output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3199,7 +3200,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -3210,14 +3211,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.utilCryptoKeyPairPost(callback);
+api.utilCryptoKeyPairGet(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -3226,7 +3227,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class utilCryptoKeyPairPostExample
+    public class utilCryptoKeyPairGetExample
     {
         public void main()
         {
@@ -3236,12 +3237,12 @@ namespace Example
             try
             {
                 // Generates a key pair
-                KeyPairString result = apiInstance.utilCryptoKeyPairPost();
+                KeyPairString result = apiInstance.utilCryptoKeyPairGet();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.utilCryptoKeyPairPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.utilCryptoKeyPairGet: " + e.Message );
             }
         }
     }
@@ -3249,22 +3250,22 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-php">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
 try {
-    $result = $api_instance->utilCryptoKeyPairPost();
+    $result = $api_instance->utilCryptoKeyPairGet();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->utilCryptoKeyPairPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->utilCryptoKeyPairGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -3272,15 +3273,15 @@ use WWW::SwaggerClient::DefaultApi;
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 
 eval { 
-    my $result = $api_instance->utilCryptoKeyPairPost();
+    my $result = $api_instance->utilCryptoKeyPairGet();
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->utilCryptoKeyPairPost: $@\n";
+    warn "Exception when calling DefaultApi->utilCryptoKeyPairGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairPost-0-python">
+                            <div class="tab-pane" id="examples-Default-utilCryptoKeyPairGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3292,10 +3293,10 @@ api_instance = swagger_client.DefaultApi()
 
 try: 
     # Generates a key pair
-    api_response = api_instance.util_crypto_key_pair_post()
+    api_response = api_instance.util_crypto_key_pair_get()
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->utilCryptoKeyPairPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->utilCryptoKeyPairGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3311,14 +3312,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-utilCryptoKeyPairPost-201-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-utilCryptoKeyPairGet-201-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-utilCryptoKeyPairPost-201-schema">
-                                  <div id='responses-utilCryptoKeyPairPost-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-utilCryptoKeyPairGet-201-schema">
+                                  <div id='responses-utilCryptoKeyPairGet-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3344,24 +3345,24 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-utilCryptoKeyPairPost-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-utilCryptoKeyPairPost-201-schema-201');
+                                        $('#responses-utilCryptoKeyPairGet-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-utilCryptoKeyPairGet-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-utilCryptoKeyPairPost-201-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-utilCryptoKeyPairGet-201-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-utilCryptoSignPost">
-                      <article id="api-Default-utilCryptoSignPost-0" data-group="User" data-name="utilCryptoSignPost" data-version="0">
+                    <div id="api-Default-utilCryptoSignGet">
+                      <article id="api-Default-utilCryptoSignGet-0" data-group="User" data-name="utilCryptoSignGet" data-version="0">
                         <div class="pull-left">
-                          <h1>utilCryptoSignPost</h1>
+                          <h1>utilCryptoSignGet</h1>
                           <p>Signs data</p>
                         </div>
                         <div class="pull-right"></div>
@@ -3370,32 +3371,32 @@ except ApiException as e:
                         <p class="marked">Signs data with the given private key and returns the signature</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/util/crypto/sign</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/util/crypto/sign</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-utilCryptoSignPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoSignPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-utilCryptoSignPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-utilCryptoSignPost-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-utilCryptoSignGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-utilCryptoSignGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-utilCryptoSignGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-utilCryptoSignGet-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-utilCryptoSignPost-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+                          <div class="tab-pane active" id="examples-Default-utilCryptoSignGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
 "//util/crypto/sign"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-java">
+                          <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -3411,17 +3412,17 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SigningPayload body = ; // SigningPayload | 
         try {
-            Signature result = apiInstance.utilCryptoSignPost(body);
+            Signature result = apiInstance.utilCryptoSignGet(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoSignPost");
+            System.err.println("Exception when calling DefaultApi#utilCryptoSignGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-android">
+                          <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -3430,26 +3431,26 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SigningPayload body = ; // SigningPayload | 
         try {
-            Signature result = apiInstance.utilCryptoSignPost(body);
+            Signature result = apiInstance.utilCryptoSignGet(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#utilCryptoSignPost");
+            System.err.println("Exception when calling DefaultApi#utilCryptoSignGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">SigningPayload *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Signs data
-[apiInstance utilCryptoSignPostWith:body
+[apiInstance utilCryptoSignGetWith:body
               completionHandler: ^(Signature output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3461,7 +3462,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var Avisen = require('avisen');
 
 var api = new Avisen.DefaultApi()
@@ -3474,14 +3475,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.utilCryptoSignPost(body, callback);
+api.utilCryptoSignGet(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -3490,7 +3491,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class utilCryptoSignPostExample
+    public class utilCryptoSignGetExample
     {
         public void main()
         {
@@ -3501,12 +3502,12 @@ namespace Example
             try
             {
                 // Signs data
-                Signature result = apiInstance.utilCryptoSignPost(body);
+                Signature result = apiInstance.utilCryptoSignGet(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.utilCryptoSignPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.utilCryptoSignGet: " + e.Message );
             }
         }
     }
@@ -3514,7 +3515,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-php">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3522,15 +3523,15 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // SigningPayload | 
 
 try {
-    $result = $api_instance->utilCryptoSignPost($body);
+    $result = $api_instance->utilCryptoSignGet($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->utilCryptoSignPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->utilCryptoSignGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -3539,15 +3540,15 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $body = WWW::SwaggerClient::Object::SigningPayload->new(); # SigningPayload | 
 
 eval { 
-    my $result = $api_instance->utilCryptoSignPost(body => $body);
+    my $result = $api_instance->utilCryptoSignGet(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->utilCryptoSignPost: $@\n";
+    warn "Exception when calling DefaultApi->utilCryptoSignGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-utilCryptoSignPost-0-python">
+                            <div class="tab-pane" id="examples-Default-utilCryptoSignGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -3560,10 +3561,10 @@ body =  # SigningPayload |
 
 try: 
     # Signs data
-    api_response = api_instance.util_crypto_sign_post(body)
+    api_response = api_instance.util_crypto_sign_get(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->utilCryptoSignPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->utilCryptoSignGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3605,12 +3606,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_utilCryptoSignPost_body');
+                                  var result = $('#d2e199_utilCryptoSignGet_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_utilCryptoSignPost_body"></div>
+                                <div id="d2e199_utilCryptoSignGet_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -3622,14 +3623,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-utilCryptoSignPost-201-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-utilCryptoSignGet-201-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-utilCryptoSignPost-201-schema">
-                                  <div id='responses-utilCryptoSignPost-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-utilCryptoSignGet-201-schema">
+                                  <div id='responses-utilCryptoSignGet-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3655,14 +3656,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-utilCryptoSignPost-201-schema-data').val(stringify(schema));
-                                        var result = $('#responses-utilCryptoSignPost-201-schema-201');
+                                        $('#responses-utilCryptoSignGet-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-utilCryptoSignGet-201-schema-201');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-utilCryptoSignPost-201-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-utilCryptoSignGet-201-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

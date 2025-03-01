@@ -10,6 +10,7 @@ build/
 .idea/compiler.xml
 .idea/libraries/
 .idea/dataSources.xml
+.idea/dataSources/
 *.iws
 *.iml
 *.ipr

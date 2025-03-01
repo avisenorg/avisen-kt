@@ -98,8 +98,15 @@ data class Blockchain(
         return ProcessedArticle(true, null)
     }
 
-    fun acceptPublisher(publicKey: String) {
-        unprocessedPublishers.add(publicKey)
+    /**
+     * @param publicKey the public key to add to the list of publishers
+     * @param signature the signature created by the currently running node
+     */
+    fun acceptPublisher(publicKey: String, signature: String): Boolean {
+
+        if (!verifySignature(publisherKeys.second.toPublicKey(), publicKey, signature.hexStringToByteArray())) return false
+
+        return unprocessedPublishers.add(publicKey)
     }
 
     private fun processPublishers(existingPublishers: Set<String>): Set<String> {
