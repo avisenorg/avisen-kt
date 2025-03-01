@@ -167,7 +167,7 @@ paths:
           description: Ok
 
   /util/crypto/key-pair:
-    post:
+    get:
       summary: Generates a key pair
       description: Generates an ECDSA key pair. Is not sent to the network peers or saved in the database.
       responses:

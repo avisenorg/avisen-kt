@@ -354,12 +354,12 @@ fun Application.module() {
         route("/util") {
             route("/crypto") {
                 route("/key-pair") {
-                    post {
+                    get {
                         val keyPair = generateKeyPair()
 
                         if (keyPair == null) {
                             call.response.status(HttpStatusCode.InternalServerError)
-                            return@post
+                            return@get
                         }
 
                         call.respond(HttpStatusCode.Created, KeyPairString(keyPair.first.getString(), keyPair.second.getString()))
