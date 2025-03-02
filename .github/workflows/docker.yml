@@ -43,5 +43,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
+          provenance: mode=max
+          sbom: true
           push: true
           tags: avisen/client-kt:latest,avisen/client-kt:${{ github.ref_name }}
