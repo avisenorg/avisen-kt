@@ -28,7 +28,7 @@ data class StoreBlock(
 @Serializable
 data class StoreTransactionData(
     val articles: List<StoreArticle>,
-    val publishers: Set<String>,
+    val publishers: Set<StorePublisher>,
 )
 
 @Serializable
@@ -41,4 +41,9 @@ data class StoreArticle (
     val content: String,
     val date: String,
     val signature: String,
+)
+
+@Serializable
+data class StorePublisher(
+    val publicKey: String,
 )

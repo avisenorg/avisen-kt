@@ -38,7 +38,8 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
-import org.avisen.network.Publisher
+import org.avisen.blockchain.Publisher
+import org.avisen.network.NewPublisher
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -212,9 +213,9 @@ fun Application.module() {
                     if (nodeInfo.type == NodeType.PUBLISHER) {
                         route("/publisher") {
                             post {
-                                val newPublisher = call.receive<Publisher>()
+                                val newPublisher = call.receive<NewPublisher>()
 
-                                val result = blockchain.acceptPublisher(newPublisher.publicKey, newPublisher.signature)
+                                val result = blockchain.acceptPublisher(Publisher(newPublisher.publicKey), newPublisher.signature)
 
                                 if (result) {
                                    call.response.status(HttpStatusCode.OK)

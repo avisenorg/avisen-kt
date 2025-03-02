@@ -13,6 +13,7 @@ import org.avisen.crypto.verifySignature
 import org.avisen.storage.Storage
 import org.avisen.storage.StoreArticle
 import org.avisen.storage.StoreBlock
+import org.avisen.storage.StorePublisher
 import org.avisen.storage.StoreTransactionData
 import java.time.Instant
 
@@ -24,7 +25,7 @@ data class Blockchain(
     // private, public
     val publisherKeys: Pair<String, String>,
     private val unprocessedArticles: MutableList<Article> = mutableListOf(),
-    private val unprocessedPublishers: MutableSet<String> = mutableSetOf(),
+    private val unprocessedPublishers: MutableSet<Publisher> = mutableSetOf(),
 ) {
     val unprocessedArticlesCount get() = unprocessedArticles.size
     val unprocessedPublishersCount get() = unprocessedPublishers.size
@@ -77,7 +78,7 @@ data class Blockchain(
             val latestBlock = storage.latestBlock()
             val previousHash = latestBlock!!.hash
 
-            val data = TransactionData(unprocessedArticles.toList(), processPublishers(latestBlock.data.publishers))
+            val data = TransactionData(unprocessedArticles.toList(), processPublishers(latestBlock.data.publishers.toPublishers()))
             val newHeight = latestBlock.height + 1u
             val newBlock = Block(
                 publisherKeys.second,
@@ -99,17 +100,17 @@ data class Blockchain(
     }
 
     /**
-     * @param publicKey the public key to add to the list of publishers
+     * @param publisher the publisher to add to the list of publishers
      * @param signature the signature created by the currently running node
      */
-    fun acceptPublisher(publicKey: String, signature: String): Boolean {
+    fun acceptPublisher(publisher: Publisher, signature: String): Boolean {
 
-        if (!verifySignature(publisherKeys.second.toPublicKey(), publicKey, signature.hexStringToByteArray())) return false
+        if (!verifySignature(publisherKeys.second.toPublicKey(), publisher.publicKey, signature.hexStringToByteArray())) return false
 
-        return unprocessedPublishers.add(publicKey)
+        return unprocessedPublishers.add(publisher)
     }
 
-    private fun processPublishers(existingPublishers: Set<String>): Set<String> {
+    private fun processPublishers(existingPublishers: Set<Publisher>): Set<Publisher> {
         return existingPublishers + unprocessedPublishers
     }
 
@@ -127,7 +128,7 @@ data class Blockchain(
 
             if (block.timestamp <= latestBlock.timestamp) return false
 
-            if (!latestBlock.data.publishers.contains(block.publisherKey)) return false
+            if (latestBlock.data.publishers.none { it.publicKey == block.publisherKey }) return false
 
             if (!verifySignature(block.publisherKey.toPublicKey(), block.previousHash + block.data + block.timestamp + block.height, block.signature.hexStringToByteArray())) return false
         }
@@ -150,7 +151,7 @@ data class Block(
 ) {
     companion object {
         fun genesis(genesisPublisherKey: String = "", genesisSigningKey: String = ""): Block {
-            val data = TransactionData(listOf(), setOf(genesisPublisherKey))
+            val data = TransactionData(listOf(), setOf(Publisher(genesisPublisherKey)))
             val timestamp = Instant.now().toEpochMilli()
             val height = 0u
             return Block(
@@ -168,7 +169,7 @@ data class Block(
 @Serializable
 data class TransactionData(
     val articles: List<Article>,
-    val publishers: Set<String>,
+    val publishers: Set<Publisher>,
 )
 
 @Serializable
@@ -196,9 +197,12 @@ data class Article(
      */
     val signature: String,
     @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(authorKey + byline + headline + section + content + date),
-) {
+)
 
-}
+@Serializable
+data class Publisher(
+    val publicKey: String,
+)
 
 data class ProcessedArticle(
     val processed: Boolean,
@@ -210,10 +214,12 @@ fun StoreBlock.toBlock() = Block(publisherKey, signature, previousHash, data.toT
 fun List<StoreBlock>.toBlocks() = map { it.toBlock() }
 fun TransactionData.toStoreTransactionData() = StoreTransactionData(
     articles.map { it.toStoreArticle() },
-    publishers,
+    publishers.map { it.toStorePublisher() }.toSet(),
 )
-fun StoreTransactionData.toTransactionData() = TransactionData(articles.map { it.toArticle() }, publishers)
-
+fun StoreTransactionData.toTransactionData() = TransactionData(articles.map { it.toArticle() }, publishers.map { it.toPublisher()}.toSet())
+fun StorePublisher.toPublisher() = Publisher(publicKey)
+fun Set<StorePublisher>.toPublishers() = map { it.toPublisher() }.toSet()
+fun Publisher.toStorePublisher() = StorePublisher(publicKey)
 fun Article.toStoreArticle() = StoreArticle(
     id,
     authorKey,
