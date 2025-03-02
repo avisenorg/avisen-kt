@@ -127,7 +127,7 @@ class BlockchainTest : DescribeSpec({
                 it("should add unprocessed publisher to block") {
                     val genesisBlock = Block.genesis(publisherPublicKey, publisherSigningKey)
                     val storage = mockk<Storage>()
-                    val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey), unprocessedPublishers = mutableSetOf("test2"))
+                    val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey), unprocessedPublishers = mutableSetOf(Publisher("test2")))
                     val publisherKeyPair = generateKeyPair().shouldNotBeNull()
 
                     every { storage.latestBlock() } returns genesisBlock.toStore()
@@ -160,7 +160,7 @@ class BlockchainTest : DescribeSpec({
                 val publicKey = keysToAdd.second.getString()
                 val signature = sign(publisherSigningKey.toPrivateKey(), publicKey)
 
-                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe true
+                blockchain.acceptPublisher(Publisher(publicKey), signature.toHexString()) shouldBe true
             }
 
             it("should not accept publisher with invalid signature") {
@@ -171,7 +171,7 @@ class BlockchainTest : DescribeSpec({
                 val publicKey = keysToAdd.second.getString()
                 val signature = sign(keysToAdd.first, "invalid")
 
-                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe false
+                blockchain.acceptPublisher(Publisher(publicKey), signature.toHexString()) shouldBe false
             }
 
             it("should not add duplicate publisher") {
@@ -179,11 +179,11 @@ class BlockchainTest : DescribeSpec({
                 val publicKey = keysToAdd.second.getString()
 
                 val storage = mockk<Storage>()
-                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey), unprocessedPublishers = mutableSetOf(publicKey))
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey), unprocessedPublishers = mutableSetOf(Publisher(publicKey)))
 
                 val signature = sign(keysToAdd.first, publicKey)
 
-                blockchain.acceptPublisher(publicKey, signature.toHexString()) shouldBe false
+                blockchain.acceptPublisher(Publisher(publicKey), signature.toHexString()) shouldBe false
             }
         }
 
@@ -197,7 +197,7 @@ class BlockchainTest : DescribeSpec({
                     genesisBlock.height + 1u,
                     genesisBlock.timestamp + 1,
                     TransactionData(
-                        emptyList(), setOf(publisherPublicKey)
+                        emptyList(), setOf(Publisher(publisherPublicKey))
                     ),
                 )
 
@@ -279,7 +279,7 @@ class BlockchainTest : DescribeSpec({
 
             genesisBlock.previousHash.shouldBeEmpty()
             genesisBlock.height shouldBe 0u
-            genesisBlock.data shouldBe TransactionData(emptyList(), setOf(publisherPublicKey))
+            genesisBlock.data shouldBe TransactionData(emptyList(), setOf(Publisher(publisherPublicKey)))
         }
     }
 })
