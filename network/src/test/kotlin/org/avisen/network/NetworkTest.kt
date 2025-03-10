@@ -17,7 +17,7 @@ class NetworkTest: DescribeSpec({
                 val networkClient = mockk<NetworkClient>()
                 val network = Network(networkClient, peers)
 
-                network.addPeer(Node("test", NodeType.REPLICA), false)
+                network.addPeer(Node("http://test.com", NodeType.REPLICA), false)
 
                 peers shouldHaveSize 1
             }
@@ -27,8 +27,8 @@ class NetworkTest: DescribeSpec({
                 val networkClient = mockk<NetworkClient>()
                 val network = Network(networkClient, peers)
 
-                network.addPeer(Node("test", NodeType.REPLICA), false)
-                network.addPeer(Node("test", NodeType.REPLICA), false)
+                network.addPeer(Node("http://test.com", NodeType.REPLICA), false)
+                network.addPeer(Node("http://test.com", NodeType.REPLICA), false)
 
                 peers shouldHaveSize 1
             }
@@ -40,8 +40,8 @@ class NetworkTest: DescribeSpec({
 
                 coEvery { networkClient.broadcastPeer(any(), any()) } returns Unit
 
-                network.addPeer(Node("first", NodeType.REPLICA), false)
-                network.addPeer(Node("test", NodeType.REPLICA), true)
+                network.addPeer(Node("http://first.com", NodeType.REPLICA), false)
+                network.addPeer(Node("http://test.com", NodeType.REPLICA), true)
 
                 peers shouldHaveSize 2
 
@@ -57,8 +57,8 @@ class NetworkTest: DescribeSpec({
 
                 coEvery { networkClient.broadcastBlock(any(), any()) } returns Unit
 
-                network.addPeer(Node("first", NodeType.REPLICA), false)
-                network.addPeer(Node("second", NodeType.REPLICA), false)
+                network.addPeer(Node("http://first.com", NodeType.REPLICA), false)
+                network.addPeer(Node("http://second.com", NodeType.REPLICA), false)
 
                 network.broadcastBlock(Block("pubKey", "signature", "prevHash", TransactionData(emptyList(), emptySet()), Instant.now().toEpochMilli(), 1u))
 

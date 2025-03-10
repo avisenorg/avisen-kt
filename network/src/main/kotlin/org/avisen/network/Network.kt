@@ -250,7 +250,7 @@ fun validatePeerUrl(url: String): Pair<Boolean, String> {
     }
 
     // Validate URL using the URI class
-    try {
+    return try {
         val uri = URI(url)
 
         // Check protocol is non-null and either of http or https
@@ -263,11 +263,9 @@ fun validatePeerUrl(url: String): Pair<Boolean, String> {
         if (uri.host == null || uri.host.isBlank()) {
             return Pair(false, "URL must contain a valid host")
         }
-
+        Pair(true, "Valid URL format for peer")
     } catch (e: URISyntaxException) {
-        return Pair(false, "Invalid URL format for peer: ${e.message}")
+        Pair(false, "Invalid URL format for peer: ${e.message}")
     }
-
-    return Pair(true, "Valid URL format for peer")
 }
 
