@@ -90,10 +90,6 @@ data class Network(
         if (!isValidUrl) {
             throw RuntimeException(urlMsg)
         }
-        val (isConnected, connectMsg) = testPeerConnectivity(node.address, client)
-        if (!isConnected) {
-            throw RuntimeException(connectMsg)
-        }
 
         val added = addPeer(node)
 
@@ -270,21 +266,5 @@ fun validatePeerUrl(url: String): Pair<Boolean, String> {
         Pair(true, "Valid URL format for peer")
     } catch (e: URISyntaxException) {
         Pair(false, "Invalid URL format for peer: ${e.message}")
-    }
-}
-
-/**
- * Tests if a peer is reachable and responds correctly
- * @param url The URL to test
- * @param client The NetworkClient to use for testing
- * @return Pair<Boolean, String> with connection status and message
- */
-suspend fun testPeerConnectivity(url: String, client: NetworkClient): Pair<Boolean, String> {
-    return try {
-        // Try to download peer info as a basic connectivity test
-        client.downloadPeerInfo(url)
-        Pair(true, "Successfully connected to peer")
-    } catch (e: Exception) {
-        Pair(false, "Failed to connect to peer: ${e.message}")
     }
 }
