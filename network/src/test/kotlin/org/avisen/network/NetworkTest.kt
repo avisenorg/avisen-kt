@@ -99,6 +99,12 @@ class NetworkTest: DescribeSpec({
                 isValid shouldBe true
                 message shouldBe "Valid URL format for peer"
             }
+
+            it("should accept valid IP address with port") {
+                val (isValid, message) = validatePeerUrl("http://192.168.14.12:8081")
+                isValid shouldBe true
+                message shouldBe "Valid URL format for peer"
+            }
         }
     }
 })
