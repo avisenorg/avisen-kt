@@ -16,6 +16,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.avisen.blockchain.Block
+import java.net.URI
+import java.net.URISyntaxException
 
 @Serializable
 data class Node(
@@ -84,8 +86,9 @@ data class Network(
      * If the node already exists do not add it and return false.
      */
     suspend fun addPeer(node: Node, broadcast: Boolean?) {
-        if (node.address.isBlank()) {
-            throw RuntimeException("Address cannot be empty")
+        val (isValidUrl, urlMsg) = validatePeerUrl(node.address)
+        if (!isValidUrl) {
+            throw RuntimeException(urlMsg)
         }
 
         val added = addPeer(node)
@@ -231,5 +234,37 @@ class NetworkWebClient(private val networkId: String): NetworkClient {
             throw RuntimeException("Failed to download the blocks from address: $address with fromHeight: $fromHeight")
         }
         return response.body<List<Block>>()
+    }
+}
+
+/**
+ * Validates that a peer URL has the correct format
+ * @param url The URL to validate
+ * @return Pair<Boolean, String> where first value indicates if URL is valid,
+ *         and second value contains an error message if invalid
+ */
+fun validatePeerUrl(url: String): Pair<Boolean, String> {
+    // Check if URL is empty
+    if (url.isBlank()) {
+        return Pair(false, "peer URL cannot be empty")
+    }
+
+    // Validate URL using the URI class
+    return try {
+        val uri = URI(url)
+
+        // Check protocol is non-null and either of http or https
+        if (uri.scheme == null
+            || !(uri.scheme.equals("http", ignoreCase = true) || uri.scheme.equals("https", ignoreCase = true))) {
+            return Pair(false, "peer URL must use HTTP or HTTPS protocol")
+        }
+
+        // Check host is not null or empty
+        if (uri.host == null || uri.host.isBlank()) {
+            return Pair(false, "URL must contain a valid host")
+        }
+        Pair(true, "Valid URL format for peer")
+    } catch (e: URISyntaxException) {
+        Pair(false, "Invalid URL format for peer: ${e.message}")
     }
 }
