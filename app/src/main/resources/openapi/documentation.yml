@@ -174,6 +174,25 @@ paths:
         "200":
           description: Ok
 
+  /util/crypto/hash:
+    get:
+      summary: Generates a hash
+      description: Generates a SHA-256 hash of the request content.
+      operationId: hash
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashContent'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashContent'
+
   /util/crypto/key-pair:
     get:
       summary: Generates a key pair
@@ -284,4 +303,10 @@ components:
         publicKey:
           type: string
         signature:
+          type: string
+
+    HashContent:
+      type: object
+      properties:
+        content:
           type: string

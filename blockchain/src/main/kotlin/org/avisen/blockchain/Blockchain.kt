@@ -61,7 +61,7 @@ data class Blockchain(
         // First verify the Article's signature
         val verified = verifySignature(
             article.authorKey.toPublicKey(),
-            article.byline + article.headline + article.section + article.content + article.date,
+            article.byline + article.headline + article.section + article.contentHash + article.date,
             article.signature.hexStringToByteArray()
         )
 
@@ -185,9 +185,9 @@ data class Article(
      */
     val section: String,
     /**
-     * The html content of the article
+     * The content hash of the article
      */
-    val content: String,
+    val contentHash: String,
     /**
      * The date in format YYYY-MM-dd
      */
@@ -196,7 +196,7 @@ data class Article(
      * The ECDSA signature of the Article (byline + headline + section + content + date)
      */
     val signature: String,
-    @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(authorKey + byline + headline + section + content + date),
+    @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(authorKey + byline + headline + section + contentHash + date),
 )
 
 @Serializable
@@ -226,7 +226,7 @@ fun Article.toStoreArticle() = StoreArticle(
     byline,
     headline,
     section,
-    content,
+    contentHash,
     date,
     signature,
 )
@@ -236,7 +236,7 @@ fun StoreArticle.toArticle() = Article(
     byline,
     headline,
     section,
-    content,
+    contentHash,
     date,
     signature,
     id,

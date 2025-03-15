@@ -37,8 +37,10 @@ import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.avisen.blockchain.Publisher
+import org.avisen.crypto.hash
 import org.avisen.network.NewPublisher
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -315,7 +317,7 @@ fun Application.module() {
                         || article.byline == ""
                         || article.headline == ""
                         || article.section == ""
-                        || article.content == ""
+                        || article.contentHash == ""
                         || article.date == ""
                         || article.signature == "") {
                         call.response.status(HttpStatusCode.BadRequest)
@@ -361,6 +363,14 @@ fun Application.module() {
 
         route("/util") {
             route("/crypto") {
+                route("hash") {
+                    get {
+                        val contentToHash = call.receive<HashContent>()
+
+                        call.respond(HashContent(hash(contentToHash.content)))
+                    }
+                }
+
                 route("/key-pair") {
                     get {
                         val keyPair = generateKeyPair()
@@ -397,3 +407,8 @@ fun Application.storage(): Db {
 
     return Db.init(url, username, password)
 }
+
+@Serializable
+data class HashContent(
+    val content: String,
+)
