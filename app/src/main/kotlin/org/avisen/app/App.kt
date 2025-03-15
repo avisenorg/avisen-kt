@@ -365,9 +365,9 @@ fun Application.module() {
             route("/crypto") {
                 route("hash") {
                     get {
-                        val contentToHash = call.receive<ContentToHash>()
+                        val contentToHash = call.receive<HashContent>()
 
-                        call.respond(HashedContent(hash(contentToHash.content)))
+                        call.respond(HashContent(hash(contentToHash.content)))
                     }
                 }
 
@@ -409,11 +409,6 @@ fun Application.storage(): Db {
 }
 
 @Serializable
-data class ContentToHash(
-    val content: String,
-)
-
-@Serializable
-data class HashedContent(
+data class HashContent(
     val content: String,
 )
