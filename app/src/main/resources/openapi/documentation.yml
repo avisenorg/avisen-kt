@@ -177,7 +177,7 @@ paths:
   /util/crypto/hash:
     get:
       summary: Generates a hash
-      description: Generates a SHA-256 hash of the request content. Is not sent to the network peers or saved in the database.
+      description: Generates a SHA-256 hash of the request content.
       operationId: hash
       requestBody:
         required: true
