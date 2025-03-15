@@ -15,6 +15,7 @@ import io.kotest.matchers.string.shouldBeEmpty
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.avisen.crypto.hash
 import org.avisen.crypto.toPrivateKey
 import java.security.PrivateKey
 import java.security.PublicKey
@@ -305,7 +306,7 @@ fun randomArticle(publisherKeyPair: Pair<PrivateKey, PublicKey>): Article {
     val byline = "byline"
     val headline = "headline"
     val section = "section"
-    val content = "content"
+    val content = hash("content")
     val date = LocalDate.now().toString()
 
     val signature = sign(publisherKeyPair.first, byline + headline +section + content + date)

@@ -38,7 +38,7 @@ data class StoreArticle (
     val byline: String,
     val headline: String,
     val section: String,
-    val content: String,
+    val contentHash: String,
     val date: String,
     val signature: String,
 )
