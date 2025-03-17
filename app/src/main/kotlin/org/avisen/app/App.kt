@@ -1,24 +1,7 @@
 package org.avisen.app
 
-import org.avisen.blockchain.Article
-import org.avisen.blockchain.Block
-import org.avisen.blockchain.Blockchain
-import org.avisen.crypto.KeyPairString
-import org.avisen.crypto.Signature
-import org.avisen.crypto.SigningPayload
-import org.avisen.crypto.generateKeyPair
-import org.avisen.crypto.getString
-import org.avisen.crypto.setupSecurity
-import org.avisen.crypto.sign
-import org.avisen.crypto.toHexString
-import org.avisen.crypto.toPrivateKey
-import org.avisen.network.Info
-import org.avisen.network.Network
-import org.avisen.network.NetworkWebClient
-import org.avisen.network.Node
-import org.avisen.network.NodeInfo
-import org.avisen.network.NodeType
-import org.avisen.sql.Db
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
@@ -26,8 +9,10 @@ import io.ktor.server.application.createApplicationPlugin
 import io.ktor.server.application.hooks.CallSetup
 import io.ktor.server.application.install
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.plugins.openapi.openAPI
+import io.ktor.server.request.httpMethod
 import io.ktor.server.request.receive
 import io.ktor.server.request.uri
 import io.ktor.server.response.respond
@@ -39,9 +24,28 @@ import io.ktor.server.routing.routing
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import org.avisen.blockchain.Article
+import org.avisen.blockchain.Block
+import org.avisen.blockchain.Blockchain
 import org.avisen.blockchain.Publisher
+import org.avisen.crypto.KeyPairString
+import org.avisen.crypto.Signature
+import org.avisen.crypto.SigningPayload
+import org.avisen.crypto.generateKeyPair
+import org.avisen.crypto.getString
 import org.avisen.crypto.hash
+import org.avisen.crypto.setupSecurity
+import org.avisen.crypto.sign
+import org.avisen.crypto.toHexString
+import org.avisen.crypto.toPrivateKey
+import org.avisen.network.Info
+import org.avisen.network.Network
+import org.avisen.network.NetworkWebClient
 import org.avisen.network.NewPublisher
+import org.avisen.network.Node
+import org.avisen.network.NodeInfo
+import org.avisen.network.NodeType
+import org.avisen.sql.Db
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -74,9 +78,26 @@ fun Application.module() {
         header("X-Network-ID", networkId)
     }
 
+    install(CORS) {
+        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Patch)
+        allowHeader(HttpHeaders.Authorization)
+        allowHeader(HttpHeaders.AccessControlAllowOrigin)
+        allowHeader("X-Network-ID")
+        exposeHeader("X-Network-ID")
+        allowNonSimpleContentTypes = true
+        allowCredentials = true
+        allowSameOrigin = true
+        anyHost()
+    }
+
     val HeaderValidatorPlugin = createApplicationPlugin("HeaderValidatorPlugin") {
         on(CallSetup) { call ->
-            if (!(call.request.uri.contains("status") || call.request.uri.contains("util") || call.request.uri.contains("docs"))) {
+            if (!(call.request.uri.contains("status") || call.request.uri.contains("util") || call.request.uri.contains(
+                    "docs") || call.request.httpMethod == HttpMethod.Options)
+            ) {
                 if (!call.request.headers.contains("X-Network-ID")) {
                     call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Required X-Network-ID is missing"))
                     return@on
@@ -84,7 +105,10 @@ fun Application.module() {
 
                 val networkIdHeader = call.request.headers["X-Network-ID"]
                 if (networkIdHeader != networkId) {
-                    call.respond(HttpStatusCode.BadRequest, mapOf("error" to "Network ID $networkIdHeader does not match expected network id"))
+                    call.respond(
+                        HttpStatusCode.BadRequest,
+                        mapOf("error" to "Network ID $networkIdHeader does not match expected network id")
+                    )
                     return@on
                 }
             }
@@ -137,7 +161,7 @@ fun Application.module() {
                 var page = 0
 
                 var newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
-                while(newBlocks.isNotEmpty()) {
+                while (newBlocks.isNotEmpty()) {
                     newBlocks.forEach { blockchain.processBlock(it) }
                     page++
                     newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
@@ -156,7 +180,7 @@ fun Application.module() {
                         var page = 0
 
                         var newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
-                        while(newBlocks.isNotEmpty()) {
+                        while (newBlocks.isNotEmpty()) {
                             newBlocks.forEach { blockchain.processBlock(it) }
                             page++
                             newBlocks = runBlocking { network.downloadBlocks(bootNode, page, null).toMutableList() }
@@ -217,10 +241,13 @@ fun Application.module() {
                             post {
                                 val newPublisher = call.receive<NewPublisher>()
 
-                                val result = blockchain.acceptPublisher(Publisher(newPublisher.publicKey), newPublisher.signature)
+                                val result = blockchain.acceptPublisher(
+                                    Publisher(newPublisher.publicKey),
+                                    newPublisher.signature
+                                )
 
                                 if (result) {
-                                   call.response.status(HttpStatusCode.OK)
+                                    call.response.status(HttpStatusCode.OK)
                                 } else {
                                     call.response.status(HttpStatusCode.BadRequest)
                                 }
@@ -319,7 +346,8 @@ fun Application.module() {
                         || article.section == ""
                         || article.contentHash == ""
                         || article.date == ""
-                        || article.signature == "") {
+                        || article.signature == ""
+                    ) {
                         call.response.status(HttpStatusCode.BadRequest)
                         return@post
                     }
@@ -355,7 +383,7 @@ fun Application.module() {
             call.respondText("Hello World!")
         }
 
-        openAPI(path="docs/api", swaggerFile = "openapi/documentation.yml")
+        openAPI(path = "docs/api", swaggerFile = "openapi/documentation.yml")
 
         get("/status") {
             call.respond(Info(networkId, nodeInfo))
@@ -380,7 +408,10 @@ fun Application.module() {
                             return@get
                         }
 
-                        call.respond(HttpStatusCode.Created, KeyPairString(keyPair.first.getString(), keyPair.second.getString()))
+                        call.respond(
+                            HttpStatusCode.Created,
+                            KeyPairString(keyPair.first.getString(), keyPair.second.getString())
+                        )
                     }
                 }
 

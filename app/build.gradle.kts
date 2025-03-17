@@ -17,13 +17,14 @@ dependencies {
     implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-server-netty")
     implementation("io.ktor:ktor-server-content-negotiation")
-    implementation("io.ktor:ktor-serialization-kotlinx-json")
+    implementation("io.ktor:ktor-server-cors")
+    implementation("io.ktor:ktor-server-openapi")
+    implementation("io.ktor:ktor-server-default-headers")
 
+    implementation("io.ktor:ktor-serialization-kotlinx-json")
     implementation("io.ktor:ktor-client-core")
     implementation("io.ktor:ktor-client-cio")
     implementation("io.ktor:ktor-client-content-negotiation")
-    implementation("io.ktor:ktor-server-openapi")
-    implementation("io.ktor:ktor-server-default-headers")
 
     implementation("io.swagger.codegen.v3:swagger-codegen-generators:$swagger")
 
