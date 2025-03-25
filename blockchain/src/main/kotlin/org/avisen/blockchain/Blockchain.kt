@@ -58,10 +58,33 @@ data class Blockchain(
     }
 
     fun processArticle(article: Article): ProcessedArticle {
-        // First verify the Article's signature
+        // Verify the Article content
+        if (article.content != null && (article.content.isBlank() || article.content.length > 7500)) {
+            return ProcessedArticle(false, null)
+        }
+
+        // Verify the content hash
+        if (article.content != null && hash(article.content) != article.contentHash) {
+            return ProcessedArticle(false, null)
+        }
+
+        val dataToVerify = buildString {
+            append(article.byline)
+            append(article.headline)
+            append(article.section)
+
+            if (article.content != null) {
+                append(article.content)
+            }
+
+            append(article.contentHash)
+            append(article.date)
+        }
+
+        // Verify the Article's signature
         val verified = verifySignature(
             article.authorKey.toPublicKey(),
-            article.byline + article.headline + article.section + article.contentHash + article.date,
+            dataToVerify,
             article.signature.hexStringToByteArray()
         )
 
@@ -173,6 +196,7 @@ data class TransactionData(
 )
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class Article(
     /**
      * The public key corresponding to the publisher of the article
@@ -184,6 +208,8 @@ data class Article(
      * The news section for the article (this may be different per publisher)
      */
     val section: String,
+    @EncodeDefault
+    val content: String? = null,
     /**
      * The content hash of the article
      */
@@ -196,7 +222,7 @@ data class Article(
      * The ECDSA signature of the Article (byline + headline + section + content + date)
      */
     val signature: String,
-    @OptIn(ExperimentalSerializationApi::class) @EncodeDefault val id: String = hash(authorKey + byline + headline + section + contentHash + date),
+    @EncodeDefault val id: String = hash(authorKey + byline + headline + section + contentHash + date),
 )
 
 @Serializable
@@ -226,6 +252,7 @@ fun Article.toStoreArticle() = StoreArticle(
     byline,
     headline,
     section,
+    content,
     contentHash,
     date,
     signature,
@@ -236,6 +263,7 @@ fun StoreArticle.toArticle() = Article(
     byline,
     headline,
     section,
+    content,
     contentHash,
     date,
     signature,
