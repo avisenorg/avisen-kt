@@ -97,7 +97,9 @@ class BlockchainTest : DescribeSpec({
                 val goodArticle = randomArticle(publisherKeyPair)
 
                 // Adding one article should not create a block
-                blockchain.processArticle(goodArticle).processed shouldBe true
+                val processedArticle = blockchain.processArticle(goodArticle)
+                processedArticle.processed shouldBe true
+                processedArticle.block.shouldBeNull()
             }
 
             it("should not accept article with invalid content hash") {
@@ -334,7 +336,7 @@ fun randomArticle(publisherKeyPair: Pair<PrivateKey, PublicKey>): Article {
     val contentHash = hash(content)
     val date = LocalDate.now().toString()
 
-    val signature = sign(publisherKeyPair.first, byline + headline +section + contentHash + date)
+    val signature = sign(publisherKeyPair.first, byline + headline + section + content + contentHash + date)
 
     return Article(
         authorKey = publisherKeyPair.second.getString(),
