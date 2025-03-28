@@ -97,7 +97,33 @@ class BlockchainTest : DescribeSpec({
                 val goodArticle = randomArticle(publisherKeyPair)
 
                 // Adding one article should not create a block
-                blockchain.processArticle(goodArticle).processed shouldBe true
+                val processedArticle = blockchain.processArticle(goodArticle)
+                processedArticle.processed shouldBe true
+                processedArticle.block.shouldBeNull()
+            }
+
+            it("should not accept article with invalid content hash") {
+                val storage = mockk<Storage>()
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
+                val publisherKeyPair = generateKeyPair().shouldNotBeNull()
+
+                val badArticle = randomArticle(publisherKeyPair).copy(contentHash = "invalid")
+
+                blockchain.processArticle(badArticle).processed shouldBe false
+            }
+
+            it("should not accept article with invalid content length") {
+                val storage = mockk<Storage>()
+                val blockchain = Blockchain(storage, Pair(publisherSigningKey, publisherPublicKey))
+                val publisherKeyPair = generateKeyPair().shouldNotBeNull()
+
+                val articleWithNoContent = randomArticle(publisherKeyPair).copy(content = "")
+
+                blockchain.processArticle(articleWithNoContent).processed shouldBe false
+
+                val articleWithTooLongContent = randomArticle(publisherKeyPair).copy(content = buildString { repeat(751) { append("abcdefghij")} })
+
+                blockchain.processArticle(articleWithTooLongContent).processed shouldBe false
             }
 
             describe("maximum amount of articles") {
@@ -306,10 +332,11 @@ fun randomArticle(publisherKeyPair: Pair<PrivateKey, PublicKey>): Article {
     val byline = "byline"
     val headline = "headline"
     val section = "section"
-    val content = hash("content")
+    val content = "content"
+    val contentHash = hash(content)
     val date = LocalDate.now().toString()
 
-    val signature = sign(publisherKeyPair.first, byline + headline +section + content + date)
+    val signature = sign(publisherKeyPair.first, byline + headline + section + content + contentHash + date)
 
     return Article(
         authorKey = publisherKeyPair.second.getString(),
@@ -317,6 +344,7 @@ fun randomArticle(publisherKeyPair: Pair<PrivateKey, PublicKey>): Article {
         headline,
         section,
         content,
+        contentHash,
         date,
         signature.toHexString(),
     )
